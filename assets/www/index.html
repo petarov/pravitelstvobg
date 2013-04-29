@@ -23,17 +23,56 @@
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.0.css" />
+        <title>Pravitelstvo BG</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
+        <!-- div class="app">
+            <h1>Pravitelstvo BG</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
-        </div>
+        </div  -->
+        
+        <!-- Home Page -->
+        <div id="page-home" data-role="page">
+	        <div data-theme="a" data-role="header">
+	        	<h3>Pravitelstvo BG</h3>
+	        </div>
+	        <div data-role="content">
+				<ul data-role="listview" data-inset="true" data-filter="true">
+				    <li><a href="#page-news">Page 2</a></li>
+				    <li><a href="#">Audi</a></li>
+				    <li><a href="#">BMW</a></li>
+				    <li><a href="#">Cadillac</a></li>
+				    <li><a href="#">Ferrari</a></li>
+				</ul>
+			</div>
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		        <h3>© 2013 Petar Petrov</h3>
+		    </div>			
+		</div>
+		
+		<!-- News Page -->
+		<div id="page-news" data-rol="page">
+	        <div data-theme="a" data-role="header">
+	        	<h3>Pravitelstvo BG</h3>
+	        </div>
+	        <div data-role="content">
+	        	<p>What</p>
+	        	<p><a href="#page-home" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back to page "one"</a></p>	
+			</div>
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		        <h3>© 2013 Petar Petrov</h3>
+		    </div>			
+		</div>
+        
         <script type="text/javascript" src="cordova-2.6.0.js"></script>
+        <!-- jQuery -->
+        <script type="text/javascript" src="js/jquery-latest.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
+        <!-- APP -->
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
