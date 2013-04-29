@@ -1,0 +1,7 @@
+# Android
+/gen
+/bin
+local.properties
+
+# Others
+/.settings
