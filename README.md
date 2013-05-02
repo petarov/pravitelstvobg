@@ -1,7 +1,7 @@
 _.o0 PravitelstvoBG 0o._
 =========================
 
-Simple RSS reader mobile app of government.bg.
+Simple RSS reader mobile app for [government.bg](www.government.bg)
 
 **Note:** This application is localized only in Bulgarian language.
 
@@ -12,8 +12,10 @@ Simple RSS reader mobile app of government.bg.
 
 # Dependencies
 
+  * PravitelstvoBG is based on the [PhoneGap](http://phonegap.com/) mobile framework.
+
 # Files
 
  * Please check [HISTORY](HISTORY) for latest release changes.
  * Please check [LICENSE](LICENSE) for licensing topics.
-
+ 
