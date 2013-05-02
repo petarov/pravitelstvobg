@@ -37,16 +37,40 @@
         
         <!-- Home Page -->
         <div id="page-home" data-role="page">
-	        <div data-theme="a" data-role="header">
-	        	<h3>Pravitelstvo BG</h3>
-	        </div>
+	        <!-- header -->
+			<div data-role="header">
+				<a href="index.html" data-icon="refresh">Обнови</a>
+				<h1>Pravitelstvo BG</h1>
+				<a href="index.html" data-icon="info">Относно</a>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn-active ui-state-persist">Новини</a></li>
+						<li><a href="#page-e">Събития</a></li>
+						<li><a href="#page-d">Решения</a></li>
+					</ul>
+				</div><!-- /navbar -->			
+			</div>          
 	        <div data-role="content">
-				<ul data-role="listview" data-inset="true" data-filter="true">
-				    <li><a href="#page-news">Page 2</a></li>
-				    <li><a href="#">Audi</a></li>
-				    <li><a href="#">BMW</a></li>
-				    <li><a href="#">Cadillac</a></li>
-				    <li><a href="#">Ferrari</a></li>
+				<ul data-role="listview" data-inset="true" data-filter="false">
+					<li data-corners="false" 
+					data-shadow="false" 
+					data-iconshadow="true" 
+					data-wrapperels="div" 
+					data-icon="arrow-r" 
+					data-iconpos="right" 
+					data-theme="c" 
+					class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c">
+					<div class="ui-btn-inner ui-li">
+						<div class="ui-btn-text">
+							<a href="#" class="ui-link-inherit">
+							<h3 class="ui-li-heading">Animals</h3>
+							<p class="ui-li-desc">All your favorites from aarkvarks to zebras.</p>
+							</a>
+						</div>
+						<span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+					</div>
+					</li>				
+				
 				</ul>
 			</div>
 		    <div data-theme="a" data-role="footer" data-position="fixed">
@@ -55,7 +79,7 @@
 		</div>
 		
 		<!-- News Page -->
-		<div id="page-news" data-rol="page">
+		<div id="page-e" data-rol="page">
 	        <div data-theme="a" data-role="header">
 	        	<h3>Pravitelstvo BG</h3>
 	        </div>
