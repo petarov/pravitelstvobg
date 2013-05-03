@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+/*
+ * The MIT License
+ *
+ * Copyright (c) 2013 Petar Petrov
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 -->
 <html>
     <head>
@@ -35,13 +42,13 @@
             </div>
         </div  -->
         
-        <!-- Home Page -->
-        <div id="page-home" data-role="page">
+        <!-- News Page -->
+        <div id="page-n" data-role="page">
 	        <!-- header -->
 			<div data-role="header">
 				<a href="index.html" data-icon="refresh">Обнови</a>
 				<h1>Pravitelstvo BG</h1>
-				<a href="index.html" data-icon="info">Относно</a>
+				<a href="#page-about" data-icon="info">Относно</a>
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#" class="ui-btn-active ui-state-persist">Новини</a></li>
@@ -78,15 +85,64 @@
 		    </div>			
 		</div>
 		
-		<!-- News Page -->
+		<!-- Events Page -->
 		<div id="page-e" data-rol="page">
-	        <div data-theme="a" data-role="header">
-	        	<h3>Pravitelstvo BG</h3>
-	        </div>
+	        <!-- header -->
+			<div data-role="header">
+				<a href="index.html" data-icon="refresh" >Обнови</a>
+				<h1>Pravitelstvo BG</h1>
+				<a href="#page-about" data-icon="info">Относно</a>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#page-n">Новини</a></li>
+						<li><a href="#" class="ui-btn-active ui-state-persist">Събития</a></li>
+						<li><a href="#page-d">Решения</a></li>
+					</ul>
+				</div><!-- /navbar -->			
+			</div>    
 	        <div data-role="content">
 	        	<p>What</p>
 	        	<p><a href="#page-home" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back to page "one"</a></p>	
 			</div>
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		        <h3>© 2013 Petar Petrov</h3>
+		    </div>			
+		</div>
+		
+		<!-- Decisions Page -->
+		<div id="page-d" data-rol="page">
+	        <!-- header -->
+			<div data-role="header">
+				<a href="index.html" data-icon="refresh">Обнови</a>
+				<h1>Pravitelstvo BG</h1>
+				<a href="#page-about" data-icon="info">Относно</a>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#page-n">Новини</a></li>
+						<li><a href="#page-e">Събития</a></li>
+						<li><a href="#" class="ui-btn-active ui-state-persist">Решения</a></li>
+					</ul>
+				</div><!-- /navbar -->			
+			</div> 
+	        <div data-role="content">
+	        	<p>What 222</p>
+	        	<p><a href="#page-home" data-rel="back" data-role="button" data-inline="true" data-icon="back">Back to page "one"</a></p>	
+			</div>
+		    <div data-theme="a" data-role="footer" data-position="fixed">
+		        <h3>© 2013 Petar Petrov</h3>
+		    </div>			
+		</div>
+		
+		<!-- Decisions Page -->
+		<div id="page-about" data-rol="page">
+	        <!-- header -->
+			<div data-role="header">
+				<a href="index.html" data-icon="back" data-rel="back">Назад</a>
+				<h1>Pravitelstvo BG</h1>
+			</div> 		
+			<div data-role="content">	
+				<p>I'm first in the source order so I'm shown as the page.</p>		
+			</div><!-- /content -->			
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		        <h3>© 2013 Petar Petrov</h3>
 		    </div>			
@@ -97,6 +153,7 @@
         <script type="text/javascript" src="js/jquery-latest.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.2.0.min.js"></script>
         <!-- APP -->
+        <script type="text/javascript" src="js/grss.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
