@@ -26,17 +26,19 @@ var app = {
     initialize: function() {
         this.bindEvents();
     },
-
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
+    /** 
+     * Bind any events that are required on startup. Common events are:
+     * 'load', 'deviceready', 'offline', and 'online'.
+     */
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         
         $("a:jqmData(icon='refresh')").bind('tap', this.onRefresh);
     },
-
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicity call 'app.receivedEvent(...);'
+    /**
+     * The scope of 'this' is the event. In order to call the 'receivedEvent'
+     * function, we must explicity call 'app.receivedEvent(...);'
+     */
     onDeviceReady: function() {
     	
     	// http://jquerymobile.com/demos/1.1.0/docs/pages/phonegap.html
@@ -47,7 +49,9 @@ var app = {
     	
         app.receivedEvent('deviceready');
     },
-    
+    /**
+     * Get all latest news entries for given section
+     */
     onRefresh: function() {
 	
     	grss.fetch(grss.URL_EVENTS, function(results, error) {
@@ -60,8 +64,9 @@ var app = {
 	
     	app.receivedEvent('tap');
 	},
-	
-    // Update DOM on a Received Event
+	/**
+	 * Update DOM on a Received Event
+	 */
     receivedEvent: function(id) {
     
 		/* keep footer visible at all times 

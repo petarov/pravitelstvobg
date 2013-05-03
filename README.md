@@ -16,6 +16,6 @@ Simple RSS reader mobile app for [government.bg](http://government.bg)
 
 # Files
 
- * Please check [HISTORY](HISTORY) for latest release changes.
- * Please check [LICENSE](LICENSE) for licensing topics.
+ * Please check [HISTORY](HISTORY) for release changes.
+ * Please check [LICENSE](LICENSE) for licensing information.
  
