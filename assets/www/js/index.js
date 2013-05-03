@@ -41,7 +41,6 @@ var app = {
      * function, we must explicity call 'app.receivedEvent(...);'
      */
     onDeviceReady: function() {
-    	
     	// http://jquerymobile.com/demos/1.1.0/docs/pages/phonegap.html
     	$.support.cors = true;
     	$.mobile.allowCrossDomainPages = true;
@@ -53,6 +52,9 @@ var app = {
 		$.mobile.loader.prototype.options.theme = "b";
 		$.mobile.loader.prototype.options.html = "";
     	
+		// init local storage
+		storage.init(); 
+		
         app.receivedEvent('deviceready');
     },
     /**
@@ -60,18 +62,22 @@ var app = {
      */
     onRefresh: function() {
     	
-    	var url;
-    	var pid = $.mobile.activePage.attr('id');
+    	var url,
+    		storageType,
+    		pid = $.mobile.activePage.attr('id');
     	
     	switch(pid) {
     	case "page-n":
     		url = grss.URL_NEWS;
+    		storageType = storage.DataTypes.NEWS;
     		break;
     	case "page-e":
     		url = grss.URL_EVENTS;
+    		storageType = storage.DataTypes.EVENTS;
     		break;
     	case "page-d":
     		url = grss.URL_DECISIONS;
+    		storageType = storage.DataTypes.DECISIONS;
     		break;
     	default:
     		// we're not updating...
@@ -94,6 +100,9 @@ var app = {
     			$content.html('<p>Error loading!</p>');
     		} else {
     			if (results.length > 0) {
+    				
+    				// save
+    				storage.save(storageType, results);
     				
     				var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
     				var mark = '<ul data-role="listview" data-inset="true" data-filter="false">';
