@@ -24,6 +24,9 @@
 
 var app = {
     initialize: function() {
+		// init local storage
+		storage.init(); 
+		
         this.bindEvents();
     },
     /** 
@@ -33,6 +36,7 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         
+        $('div:jqmData(role="page")').live('pagebeforeshow', this.onPageLoad);
         $("a:jqmData(icon='refresh')").bind('tap', this.onRefresh);
         $("a:jqmData(role='ilink')").live('tap', this.onGotoLink);
     },
@@ -52,35 +56,27 @@ var app = {
 		$.mobile.loader.prototype.options.theme = "b";
 		$.mobile.loader.prototype.options.html = "";
     	
-		// init local storage
-		storage.init(); 
-		
         app.receivedEvent('deviceready');
+    },
+    /**
+     * 
+     */
+    onPageLoad: function(event, data) {
+    	var pageInfo = app.getCurrentPageInfo();
+    	var items = storage.get(pageInfo.storageName);
+    	if (items) {
+    		app.updateListView(pageInfo, items);
+    	}
+//    	console.log(items.length);
+//    	console.log(JSON.stringify(items));
     },
     /**
      * Get all latest news entries for given section
      */
     onRefresh: function() {
     	
-    	var url,
-    		storageType,
-    		pid = $.mobile.activePage.attr('id');
-    	
-    	switch(pid) {
-    	case "page-n":
-    		url = grss.URL_NEWS;
-    		storageType = storage.DataTypes.NEWS;
-    		break;
-    	case "page-e":
-    		url = grss.URL_EVENTS;
-    		storageType = storage.DataTypes.EVENTS;
-    		break;
-    	case "page-d":
-    		url = grss.URL_DECISIONS;
-    		storageType = storage.DataTypes.DECISIONS;
-    		break;
-    	default:
-    		// we're not updating...
+    	var pageInfo = app.getCurrentPageInfo();
+    	if (!pageInfo) {
     		return;
     	}
     	
@@ -91,36 +87,15 @@ var app = {
     		html: ""
     	});
 
-    	grss.fetch(url, function(results, error) {
-//	    	var $page = $("div:jqmData(role='page')");
-	    	var $page = $("div[id='" + pid + "']");
-	    	var $content = $page.children( ":jqmData(role=content)" );
-	    	
+    	grss.fetch(pageInfo.url, function(results, error) {
     		if (error) {
-    			$content.html('<p>Error loading!</p>');
+    			// TODO
+    			alert('Error loading!');
     		} else {
     			if (results.length > 0) {
+    				storage.save(pageInfo.storageName, results);
+    				app.updateListView(pageInfo, results);
     				
-    				// save
-    				storage.save(storageType, results);
-    				
-    				var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
-    				var mark = '<ul data-role="listview" data-inset="true" data-filter="false">';
-    				
-    				for (var i = 0; i < results.length; i++) {
-    					var entry = tpl;
-    					entry = entry.replace('$$TITLE$$', results[i].title);
-    					entry = entry.replace('$$DESC$$', results[i].title);
-    					entry = entry.replace('$$LINK$$', results[i].link);
-    					mark += entry;
-    				}
-    				mark += '</ul>';
-    				// inject
-    		    	$content.html(mark);
-    		    	// enhance
-//    		    	$page.page();
-    		    	$content.find( ":jqmData(role=listview)" ).listview();
-    			
     			} else {
     				// TODO
     				alert('No new items!');
@@ -131,7 +106,7 @@ var app = {
     	});
 	},
 	/**
-	 * 
+	 * Open an RSS item link in an InAppBrowser instance
 	 */
 	onGotoLink: function(event) {
 		event.preventDefault();
@@ -149,5 +124,61 @@ var app = {
 //    		$(':jqmData(role=header)').fixedtoolbar( { tapToggle: false } );
 //    		$(':jqmData(role=footer)').fixedtoolbar( { tapToggle: false } );
     	}
+    },
+    /**
+     * Get information about the currently selected tab-page
+     */
+    getCurrentPageInfo: function() {
+//    	var $page = $("div:jqmData(role='page')");
+    	
+    	var pageInfo = {};
+		pid = $.mobile.activePage.attr('id');
+	
+		switch(pid) {
+		case "page-n":
+			pageInfo.url = grss.URL_NEWS;
+			pageInfo.storageName = storage.DataTypes.NEWS;
+			break;
+		case "page-e":
+			pageInfo.url = grss.URL_EVENTS;
+			pageInfo.storageName = storage.DataTypes.EVENTS;
+			break;
+		case "page-d":
+			pageInfo.url = grss.URL_DECISIONS;
+			pageInfo.storageName = storage.DataTypes.DECISIONS;
+			break;
+		default:
+			// we're not updating...
+			return null;
+		}
+		
+		pageInfo.id = pid;
+		
+		return pageInfo;
+    },
+    /**
+     * Update RSS items on currently selected tab-page
+     */
+    updateListView: function(pageInfo, items) {
+    	
+    	var $page = $("div[id='" + pageInfo.id + "']");
+    	var $content = $page.children( ":jqmData(role=content)" );
+    	
+		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
+		var mark = '<ul data-role="listview" data-inset="true" data-filter="false">';
+		
+		for (var i = 0; i < items.length; i++) {
+			var entry = tpl;
+			entry = entry.replace('$$TITLE$$', items[i].title);
+			entry = entry.replace('$$DESC$$', items[i].desc);
+			entry = entry.replace('$$LINK$$', items[i].link);
+			mark += entry;
+		}
+		mark += '</ul>';
+		// inject
+    	$content.html(mark);
+    	// enhance
+//    	$page.page();
+    	$content.find( ":jqmData(role=listview)" ).listview();    	
     }
 };
