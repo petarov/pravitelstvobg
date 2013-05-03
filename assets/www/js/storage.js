@@ -40,8 +40,13 @@ var storage = {
 	},
 	get: function(dataType) {
 		if (dataType && this.storage) {
-			return JSON.parse(this.storage.getItem(dataType));
+			var value = this.storage.getItem(dataType);
+			if (value) {
+				return JSON.parse(this.storage.getItem(dataType));
+			}
 		}
+		
+		return null;
 	},
 	remove: function(dataType) {
 		if (dataType && this.storage) {
