@@ -45,10 +45,15 @@ var app = {
      * function, we must explicity call 'app.receivedEvent(...);'
      */
     onDeviceReady: function() {
+    	
+    	// speed optimization
+    	$.mobile.pageContainer = $('#container');
+    	$.mobile.defaultPageTransition = 'none';
+    	$.mobile.defaultDialogTransition = "none";
+    	
     	// http://jquerymobile.com/demos/1.1.0/docs/pages/phonegap.html
     	$.support.cors = true;
     	$.mobile.allowCrossDomainPages = true;
-    	$.mobile.defaultPageTransition = 'none';
     	$.mobile.page.prototype.options.domCache = true;
     	
 		$.mobile.loader.prototype.options.text = "Зареждане ...";
