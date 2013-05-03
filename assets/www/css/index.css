@@ -5,23 +5,19 @@ body {
 
 .ui-page { -webkit-backface-visibility: hidden; }
 
+.ui-title {
+	text-align: left !important; 
+	margin-left: 10px !important;
+	
+}
+
 #container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
     
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
 .blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
 }
