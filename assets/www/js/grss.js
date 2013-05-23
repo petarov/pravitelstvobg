@@ -44,7 +44,7 @@ var grss = {
 				};
 				
 				node.title = $(this).find('title').text();
-				node.desc = $(this).find('description').text();
+				node.desc = $(this).find('description').text(); //.replace(/<(?:.|\n)*?>/gm, '');
 				node.pubDate = $(this).find('pubDate').text();
 				node.link = $(this).find('link').text();
 				
