@@ -68,12 +68,13 @@ var app = {
      */
     onPageLoad: function(event, data) {
     	var pageInfo = app.getCurrentPageInfo();
-    	var items = storage.get(pageInfo.storageName);
-    	if (items) {
-    		app.updateListView(pageInfo, items);
+    	// check for valid page
+    	if (pageInfo != null) {
+	    	var items = storage.get(pageInfo.storageName);
+	    	if (items) {
+	    		app.updateListView(pageInfo, items);
+	    	}
     	}
-//    	console.log(items.length);
-//    	console.log(JSON.stringify(items));
     },
     /**
      * Get all latest news entries for given section
