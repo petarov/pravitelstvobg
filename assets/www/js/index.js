@@ -36,9 +36,9 @@ var app = {
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
         
-        $('div:jqmData(role="page")').live('pagebeforeshow', this.onPageLoad);
-        $("a:jqmData(icon='refresh')").bind('tap', this.onRefresh);
-        $("a:jqmData(role='ilink')").live('tap', this.onGotoLink);
+        $(document).on('pagebeforeshow', 'div:jqmData(role="page")', this.onPageLoad);
+        $(document).on('tap', "a:jqmData(icon='refresh')", this.onRefresh);
+        $(document).on('tap', "a:jqmData(role='ilink')", this.onGotoLink);
     },
     /**
      * The scope of 'this' is the event. In order to call the 'receivedEvent'
