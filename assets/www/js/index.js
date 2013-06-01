@@ -50,8 +50,9 @@ var app = {
     	$.mobile.pageContainer = $('#container');
     	$.mobile.defaultPageTransition = 'none';
     	$.mobile.defaultDialogTransition = "none";
+    	// $.mobile.buttonMarkup.hoverDelay = 50;
     	
-    	// http://jquerymobile.com/demos/1.1.0/docs/pages/phonegap.html
+    	// http://jquerymobile.com/demos/1.2.0/docs/pages/phonegap.html
     	$.support.cors = true;
     	$.mobile.allowCrossDomainPages = true;
     	$.mobile.page.prototype.options.domCache = true;
