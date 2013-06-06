@@ -35,20 +35,21 @@ var grss = {
 			url: url, 
 	  	}).done(function(data) {
 			
-			var results = [];
+			var result = {lastUpdate: '', items: []};
 			$xml = $(data);
+			
+			result.lastUpdate = $xml.find('lastBuildDate').text();
+			console.log('update' + result.lastUpdate);
 			
 			$xml.find('item').each(function() {
 				
-				var node = {
-				};
-				
+				var node = {};
 				node.title = $(this).find('title').text();
 				node.desc = $(this).find('description').text(); //.replace(/<(?:.|\n)*?>/gm, '');
 				node.pubDate = $(this).find('pubDate').text();
 				node.link = $(this).find('link').text();
 				
-				results.push(node);
+				result.items.push(node);
 				
 				// fix links
 //				var text = $(this).text();
@@ -62,7 +63,7 @@ var grss = {
 			
 			// notify
 			if (callback)
-				callback(results, null);
+				callback(result, null);
 			
 	  	}).fail(function(error) {
 	  		if (callback)

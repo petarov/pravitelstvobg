@@ -71,9 +71,9 @@ var app = {
     	var pageInfo = app.getCurrentPageInfo();
     	// check for valid page
     	if (pageInfo != null) {
-	    	var items = storage.get(pageInfo.storageName);
-	    	if (items) {
-	    		app.updateListView(pageInfo, items);
+	    	var pageData = storage.get(pageInfo.storageName);
+	    	if (pageData) {
+	    		app.updateListView(pageInfo, pageData);
 	    	}
     	}
     },
@@ -94,14 +94,14 @@ var app = {
     		html: ""
     	});
 
-    	grss.fetch(pageInfo.url, function(results, error) {
+    	grss.fetch(pageInfo.url, function(pageData, error) {
     		if (error) {
     			// TODO
     			alert('Error loading!');
     		} else {
-    			if (results.length > 0) {
-    				storage.save(pageInfo.storageName, results);
-    				app.updateListView(pageInfo, results);
+    			if (pageData.items.length > 0) {
+    				storage.save(pageInfo.storageName, pageData);
+    				app.updateListView(pageInfo, pageData);
     				
     			} else {
     				// TODO
@@ -166,13 +166,16 @@ var app = {
     /**
      * Update RSS items on currently selected tab-page
      */
-    updateListView: function(pageInfo, items) {
+    updateListView: function(pageInfo, pageData) {
     	
     	var $page = $("div[id='" + pageInfo.id + "']");
     	var $content = $page.children( ":jqmData(role=content)" );
     	
 		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
-		var mark = '<ul data-role="listview" data-inset="true" data-filter="false">';
+		var mark = '<div data-role="lastUpdate">' + pageData.lastUpdate + '</div>';
+		mark += '<ul data-role="listview" data-inset="true" data-filter="false">';
+		
+		var items = pageData.items;
 		
 		for (var i = 0; i < items.length; i++) {
 			var entry = tpl;
