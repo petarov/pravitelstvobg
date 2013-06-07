@@ -28,8 +28,10 @@ var grss = {
 	URL_EVENTS: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003',
 	URL_DECISIONS: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004',
 	
+	/**
+	 * Fetch RSS info
+	 */
 	fetch: function(url, callback) {
-		// GitHub
 		$.ajax({dataType: 'xml',
 			type: 'GET',
 			url: url, 
@@ -39,7 +41,6 @@ var grss = {
 			$xml = $(data);
 			
 			result.lastUpdate = $xml.find('lastBuildDate').text();
-			console.log('update' + result.lastUpdate);
 			
 			$xml.find('item').each(function() {
 				
