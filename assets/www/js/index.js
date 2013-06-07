@@ -48,8 +48,8 @@ var app = {
     	
     	// speed optimization
     	$.mobile.pageContainer = $('#container');
-    	$.mobile.defaultPageTransition = 'none';
-    	$.mobile.defaultDialogTransition = "none";
+    	$.mobile.defaultPageTransition = 'slide'; // 'none';
+    	$.mobile.defaultDialogTransition = 'none';
     	// $.mobile.buttonMarkup.hoverDelay = 50;
     	
     	// http://jquerymobile.com/demos/1.2.0/docs/pages/phonegap.html
@@ -173,7 +173,7 @@ var app = {
     	
 		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
 		var mark = '<div data-role="lastUpdate">' + pageData.lastUpdate + '</div>';
-		mark += '<ul data-role="listview" data-inset="true" data-filter="false">';
+		mark += '<ul data-role="listview" data-inset="true" data-filter="false" class="scrollable">';
 		
 		var items = pageData.items;
 		
