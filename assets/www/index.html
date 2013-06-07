@@ -37,7 +37,7 @@
     <!--
     // TODO LIST
     [DONE] 1. Vibrate on done loading news ...
-    2. Show single item page (Vibrate on click)
+    [DONE] 2. Show single item page (Vibrate on click)
     [DONE] 3. Show item content in InAppBrowser widget
     [DONE] 4. Cache downloaded items in .Storage & show them onLoad
     [DONE] 5. Show loading screen onRefresh
@@ -51,7 +51,7 @@
         <div id="page-n" data-role="page">
 	        <!-- header -->
 			<div data-role="header" data-position="fixed">
-				<a href="#" data-icon="refresh" data-theme="b" class="ui-btn-right">Обнови</a>
+				<a href="#" data-icon="refresh" class="ui-btn-right" data-theme="b" data-corners="true">Обнови</a>
 				<h1 class="ui-title">Pravitelstvo BG</h1>
 				<div data-role="navbar">
 					<ul>
@@ -86,6 +86,11 @@
 			</div>
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		        <h3>© 2013 Petar Petrov</h3>
+		        <a href="#page-about" class="ui-btn-right" 
+		        data-icon="info" 
+		        data-theme="a" 
+		        data-iconpos="notext" 
+		        data-corners="false"></a>
 		    </div>			
 		</div>
 		
@@ -102,12 +107,17 @@
 						<li><a href="#page-d">Решения</a></li>
 					</ul>
 				</div><!-- /navbar -->			
-			</div>    
+			</div>
 	        <div data-role="content">
 	        	<p>Обновете, за да видите последните събития.</p>
 			</div>
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		        <h3>© 2013 Petar Petrov</h3>
+		        <a href="#page-about" class="ui-btn-right" 
+		        data-icon="info" 
+		        data-theme="a" 
+		        data-iconpos="notext" 
+		        data-corners="false"></a>
 		    </div>			
 		</div>
 		
@@ -130,6 +140,11 @@
 			</div>
 		    <div data-theme="a" data-role="footer" data-position="fixed">
 		        <h3>© 2013 Petar Petrov</h3>
+		        <a href="#page-about" class="ui-btn-right" 
+		        data-icon="info" 
+		        data-theme="a" 
+		        data-iconpos="notext" 
+		        data-corners="false"></a>
 		    </div>			
 		</div>
 		
