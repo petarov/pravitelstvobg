@@ -24,7 +24,8 @@
 
 var app = {
 	Options: {
-		VIBRATE: 1000
+		VIBRATE: 1000,
+		VIBRATE_CLICK: 500
 	},
 	/**
 	 * Entry point
@@ -153,6 +154,9 @@ var app = {
 	 */
 	onGotoLink: function(event) {
 		event.preventDefault();
+
+		// vibrate signal
+		navigator.notification.vibrate(app.Options.VIBRATE_CLICK);		
 		
 		var ref = window.open($(this).attr('href'), '_blank', 'location=no');
 	},
