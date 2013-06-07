@@ -23,9 +23,34 @@
  */
 
 var app = {
+	Options: {
+		VIBRATE: 1000
+	},
+	/**
+	 * Entry point
+	 */
     initialize: function() {
 		// init local storage
 		storage.init(); 
+		// adjust moment.js BG localization
+		moment.lang('bg', {
+		    relativeTime : {
+		        future: "след %s",
+		        past:   "преди %s",
+		        s:  "секунди",
+		        m:  "минута",
+		        mm: "%d минути",
+		        h:  "час",
+		        hh: "%d часа",
+		        d:  "денy",
+		        dd: "%d дни",
+		        M:  "месец",
+		        MM: "%d месеца",
+		        y:  "година",
+		        yy: "%d години"
+		    }
+		});
+		moment().lang('bg');		
 		
         this.bindEvents();
     },
@@ -45,7 +70,6 @@ var app = {
      * function, we must explicitly call 'app.receivedEvent(...);'
      */
     onDeviceReady: function() {
-    	
     	// speed optimization
     	$.mobile.pageContainer = $('#container');
     	$.mobile.defaultPageTransition = 'none'; // 'slide';
@@ -61,26 +85,6 @@ var app = {
 		$.mobile.loader.prototype.options.textVisible = true;
 		$.mobile.loader.prototype.options.theme = "b";
 		$.mobile.loader.prototype.options.html = "";
-		
-		// adjust moment.js BG localization
-		moment.lang('bg', {
-		    relativeTime : {
-		        future: "след %s",
-		        past:   "преди %s",
-		        s:  "секунди",
-		        m:  "минута",
-		        mm: "%d минути",
-		        h:  "час",
-		        hh: "%d часа",
-		        d:  "денy",
-		        dd: "%d дни",
-		        M:  "месец",
-		        MM: "%d месеца",
-		        y:  "година",
-		        yy: "%d години"
-		    }
-		});
-		moment().lang('bg');
 		
     	// initializations are ready -> notify
         app.receivedEvent('deviceready');
@@ -116,17 +120,28 @@ var app = {
     	});
 
     	grss.fetch(pageInfo.url, function(pageData, error) {
+			// vibrate signal
+			navigator.notification.vibrate(app.Options.VIBRATE);
     		if (error) {
-    			// TODO
-    			alert('Error loading!');
+    			// Notify
+    			navigator.notification.alert(
+    				    'Проблем при зареждане на информацията! Проверете интернет връзката си.',	// message
+    				    null,		// callback
+    				    'Грешка',	// title
+    				    'OK'		// buttonName
+    				);    			
     		} else {
     			if (pageData.items.length > 0) {
     				storage.save(pageInfo.storageName, pageData);
     				app.updateListView(pageInfo, pageData);
-    				
     			} else {
-    				// TODO
-    				alert('No new items!');
+    				// Notify
+        			navigator.notification.alert(
+        				    'Няма налична нова информация! Опитайте по-късно.',	// message
+        				    null,		// callback
+        				    'Грешка',	// title
+        				    'OK'		// buttonName
+        				);        				
     			}
     		}
     		
@@ -158,7 +173,6 @@ var app = {
      */
     getCurrentPageInfo: function() {
 //    	var $page = $("div:jqmData(role='page')");
-    	
     	var pageInfo = {};
 		pid = $.mobile.activePage.attr('id');
 	
