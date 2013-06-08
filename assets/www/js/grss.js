@@ -35,6 +35,7 @@ var grss = {
 		$.ajax({dataType: 'xml',
 			type: 'GET',
 			url: url, 
+			cache: false
 	  	}).done(function(data) {
 			
 			var result = {lastUpdate: '', items: []};
