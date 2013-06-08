@@ -24,8 +24,8 @@
 
 var app = {
 	Options: {
-		VIBRATE: 1000,
-		VIBRATE_CLICK: 500
+		VIBRATE: 250,
+		VIBRATE_CLICK: 100
 	},
 	/**
 	 * Entry point
