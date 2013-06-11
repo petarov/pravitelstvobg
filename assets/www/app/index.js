@@ -53,26 +53,29 @@ var app = {
 		});
 		moment().lang('bg');
 		
-		// scroller
-		var self = this;
-		
-//		document.addEventListener('DOMContentLoaded', function() {
-//			self.myScroll = new iScroll('wrapper');
-//		}, false);
-//		
-//		this.myScroll = new iScroll('wrapper');
-		
         this.bindEvents();
     },
+    
+    loaded: function() {
+    	
+    	this.scroller = new iScroll('wrapper');
+    	//this.scroller.refresh();		    	
+    },
+    
     /** 
      * Bind any events that are required on startup. Common events are:
      * 'load', 'deviceready', 'offline', and 'online'.
      */
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-        document.addEventListener('touchstart', function(e) { e.preventDefault(); }, false);
+//        document.addEventListener('touchstart', function(e) { e.preventDefault(); }, false);
+//        document.addEventListener('touchend', function(e) { e.preventDefault(); }, false);
+//        document.addEventListener('touchdown', function(e) { e.preventDefault(); }, false);
+        
+//        var self = this;
+//        document.addEventListener('DOMContentLoaded', function () { setTimeout(self.loaded, 200); }, false);
+
+        document.addEventListener('deviceready', this.onDeviceReady, false);
         
         $(document).on('pagebeforeshow', 'div:jqmData(role="page")', this.onPageLoad);
         $(document).on('tap', "a:jqmData(icon='refresh')", this.onRefresh);
@@ -225,10 +228,15 @@ var app = {
     	// set last update info
 		var day = moment(pageData.lastUpdate);
 		var mark = '<div id="wrapper">';
-		mark = '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
+		mark += '<div id="scroller">';
+		//mark = '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
 		
 		// add items
-		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
+//		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
+//		mark += '<ul data-role="listview" data-inset="true" data-filter="false">';
+
+		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c">';
+		tpl += '<a href="$$LINK$$"><h3>$$TITLE$$</h3><p>$$DESC$$</p></a></li>';
 		mark += '<ul data-role="listview" data-inset="true" data-filter="false">';
 		
 		var items = pageData.items;
@@ -241,10 +249,12 @@ var app = {
 		}
 		mark += '</ul>';
 		mark += '</div>';
+		
 		// inject
     	$content.html(mark);
     	// enhance
 //    	$page.page();
+    	
     	$content.find( ":jqmData(role=listview)" ).listview();
     	
     	this.scroller = new iScroll($content[0]);
