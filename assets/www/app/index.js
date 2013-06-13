@@ -222,25 +222,35 @@ var app = {
 		var day = moment(pageData.lastUpdate);
 		var mark = '<div id="wrapper">';
 		mark += '<div id="scroller">';
-		//mark = '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
+		mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
 		
 		// add items
 //		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
 //		mark += '<ul data-role="listview" data-inset="true" data-filter="false">';
-
-		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c">';
-		tpl += '<a href="$$LINK$$"><h3>$$TITLE$$</h3><p>$$DESC$$</p></a></li>';
-		mark += '<ul data-role="listview" data-inset="true" data-filter="false">';
+//		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c">';
+//		tpl += '<a href="$$LINK$$"><h3>$$TITLE$$</h3><p>$$DESC$$</p></a></li>';
+		
+		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" \
+			data-icon="arrow-r" data-iconpos="right" data-theme="c" \
+			class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"> \
+			<div class="ui-btn-inner ui-li"> \
+				<div class="ui-btn-text"> \
+					<a href="$$LINK$$" class="ui-link-inherit"> \
+					<span>$$TITLE$$</span></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span> \
+				</div></li>';
+		
+		mark += '<ul class="ui-listview" data-role="listview" data-inset="true" data-filter="false">';
 		
 		var items = pageData.items;
 		for (var i = 0; i < items.length; i++) {
 			var entry = tpl;
 			entry = entry.replace('$$TITLE$$', items[i].title);
-			entry = entry.replace('$$DESC$$', items[i].desc);
+//			entry = entry.replace('$$DESC$$', items[i].desc);
 			entry = entry.replace('$$LINK$$', items[i].link);
 			mark += entry;
 		}
 		mark += '</ul>';
+		mark += '</div>';
 		mark += '</div>';
 		
 		// inject
