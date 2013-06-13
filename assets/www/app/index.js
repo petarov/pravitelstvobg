@@ -102,9 +102,6 @@ var app = {
 		$.mobile.loader.prototype.options.theme = "b";
 		$.mobile.loader.prototype.options.html = "";
 		
-    	// initializations are ready -> notify
-//        app.receivedEvent('deviceready');
-		
 		// set version info
 		cordova.exec(function(text) {
 			$('#version').text('Версия: ' + text);
@@ -183,18 +180,6 @@ var app = {
 		
 		var ref = window.open($(this).attr('href'), '_blank', 'location=no');
 	},
-	/**
-	 * Update DOM on a Received Event
-	 */
-    receivedEvent: function(id) {
-    	console.log('Received Event: ' + id);
-    	
-    	if (id == 'deviceready') {
-    		// keep footer visible at all times
-//    		$(':jqmData(role=header)').fixedtoolbar( { tapToggle: false } );
-//    		$(':jqmData(role=footer)').fixedtoolbar( { tapToggle: false } );
-    	}
-    },
     /**
      * Get information about the currently selected tab-page
      */
