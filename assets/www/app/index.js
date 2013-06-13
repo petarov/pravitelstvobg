@@ -101,7 +101,7 @@ var app = {
 		"Version", "GetVersionName", []);		
     },
     /**
-     * 
+     * Update items as soon as page load event is triggered
      */
     onPageLoad: function(event, data) {
     	var pageInfo = app.getCurrentPageInfo();
@@ -168,13 +168,12 @@ var app = {
 		// vibrate signal
 		navigator.notification.vibrate(app.Options.VIBRATE_CLICK);		
 		
-		var ref = window.open($(this).attr('href'), '_blank', 'location=no');
+		var ref = window.open($(this).attr('href'), '_system', 'location=no');
 	},
     /**
      * Get information about the currently selected tab-page
      */
     getCurrentPageInfo: function() {
-//    	var $page = $("div:jqmData(role='page')");
     	var pageInfo = {};
 		pid = $.mobile.activePage.attr('id');
 	
@@ -210,8 +209,7 @@ var app = {
 
     	// set last update info
 		var day = moment(pageData.lastUpdate);
-		var mark = '<div id="wrapper">';
-		mark += '<div id="scroller">';
+		var mark = '<div id="wrapper"><div id="scroller">';
 		mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
 		
 		// add items
@@ -240,8 +238,7 @@ var app = {
 			mark += entry;
 		}
 		mark += '</ul>';
-		mark += '</div>';
-		mark += '</div>';
+		mark += '</div></div>';
 		
 		// inject
     	$content.html(mark);
