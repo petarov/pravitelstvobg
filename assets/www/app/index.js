@@ -24,7 +24,7 @@
 
 var app = {
 	Options: {
-		VIBRATE: 250,
+		VIBRATE: 200,
 		VIBRATE_CLICK: 100
 	},
 	/**
@@ -55,27 +55,17 @@ var app = {
 		
         this.bindEvents();
     },
-    
-    loaded: function() {
-    	
-    	this.scroller = new iScroll('wrapper');
-    	//this.scroller.refresh();		    	
-    },
-    
     /** 
      * Bind any events that are required on startup. Common events are:
      * 'load', 'deviceready', 'offline', and 'online'.
      */
     bindEvents: function() {
+    	document.addEventListener('deviceready', this.onDeviceReady, false);
+    	
         document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 //        document.addEventListener('touchstart', function(e) { e.preventDefault(); }, false);
 //        document.addEventListener('touchend', function(e) { e.preventDefault(); }, false);
 //        document.addEventListener('touchdown', function(e) { e.preventDefault(); }, false);
-        
-//        var self = this;
-//        document.addEventListener('DOMContentLoaded', function () { setTimeout(self.loaded, 200); }, false);
-
-        document.addEventListener('deviceready', this.onDeviceReady, false);
         
         $(document).on('pagebeforeshow', 'div:jqmData(role="page")', this.onPageLoad);
         $(document).on('tap', "a:jqmData(icon='refresh')", this.onRefresh);
