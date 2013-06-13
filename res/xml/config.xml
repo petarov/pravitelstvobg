@@ -94,6 +94,11 @@
 	<feature name="InAppBrowser">
 	  <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
 	</feature>
+	
+	<!-- Custom plugins -->
+	<feature name="Version">
+	  <param name="android-package" value="net.vexelon.pravitelstvobg.Version"/>
+	</feature>	
 
 </widget>
 

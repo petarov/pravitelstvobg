@@ -103,7 +103,15 @@ var app = {
 		$.mobile.loader.prototype.options.html = "";
 		
     	// initializations are ready -> notify
-        app.receivedEvent('deviceready');
+//        app.receivedEvent('deviceready');
+		
+		// set version info
+		cordova.exec(function(text) {
+			$('#version').text('Версия: ' + text);
+		}, function(error) {
+			$('#version').text('');
+		}, 
+		"Version", "GetVersionName", []);		
     },
     /**
      * 
