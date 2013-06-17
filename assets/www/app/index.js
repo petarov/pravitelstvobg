@@ -143,7 +143,14 @@ var app = {
     				);    			
     		} else {
     			if (pageData.items.length > 0) {
+    				// remove old data
+    		    	var pageData = storage.get(pageInfo.storageName);
+    		    	if (pageData) {
+    		    		storage.remove(pageInfo.storageName);
+    		    	}
+    				// save new data
     				storage.save(pageInfo.storageName, pageData);
+    				// update UI items
     				app.updateListView(pageInfo, pageData);
     			} else {
     				// Notify
