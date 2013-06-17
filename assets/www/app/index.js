@@ -69,7 +69,7 @@ var app = {
         
         $(document).on('pagebeforeshow', 'div:jqmData(role="page")', this.onPageLoad);
         $(document).on('tap', "a:jqmData(icon='refresh')", this.onRefresh);
-        $(document).on('tap', "a:jqmData(role='ilink')", this.onGotoLink);
+        $(document).on('tap click', "a:jqmData(role='ilink')", this.onGotoLink);
     },
     /**
      * The scope of 'this' is the event. In order to call the 'receivedEvent'
@@ -136,7 +136,7 @@ var app = {
     		if (error) {
     			// Notify
     			navigator.notification.alert(
-    				    'Проблем при зареждане на информацията! Проверете интернет връзката си.',	// message
+    				    'Проблем при зареждане на информацията! Проверете интернет връзката си.',
     				    null,		// callback
     				    'Грешка',	// title
     				    'OK'		// buttonName
@@ -168,7 +168,7 @@ var app = {
 		// vibrate signal
 		navigator.notification.vibrate(app.Options.VIBRATE_CLICK);		
 		
-		var ref = window.open($(this).attr('href'), '_system', 'location=no');
+		var ref = window.open($(this).attr('href'), '_blank', 'location=no');
 	},
     /**
      * Get information about the currently selected tab-page
@@ -223,7 +223,7 @@ var app = {
 			class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"> \
 			<div class="ui-btn-inner ui-li"> \
 				<div class="ui-btn-text"> \
-					<a href="$$LINK$$" class="ui-link-inherit"> \
+					<a href="$$LINK$$" data-role="ilink" class="ui-link-inherit"> \
 					<span>$$TITLE$$</span></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span> \
 				</div></li>';
 		
