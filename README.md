@@ -10,7 +10,7 @@ Simple RSS reader mobile app for [government.bg](http://government.bg)
 
 # Requirements
 
-  * Requires Android 2.1 [API Level 7](http://developer.android.com/about/versions/android-2.2.html) or above
+  * Requires Android 2.1 [API Level 7](http://developer.android.com/about/versions/android-2.1.html) or above
   * Requires Internet connection
 
 # Libraries
