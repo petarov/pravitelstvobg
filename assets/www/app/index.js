@@ -68,8 +68,8 @@ var app = {
 //        document.addEventListener('touchdown', function(e) { e.preventDefault(); }, false);
         
         $(document).on('pagebeforeshow', 'div:jqmData(role="page")', this.onPageLoad);
-        $(document).on('tap', "a:jqmData(icon='refresh')", this.onRefresh);
-        $(document).on('tap click', "a:jqmData(role='ilink')", this.onGotoLink);
+        $(document).on('click', "a:jqmData(icon='refresh')", this.onRefresh);
+        $(document).on('click', "a:jqmData(role='ilink')", this.onGotoLink);
     },
     /**
      * The scope of 'this' is the event. In order to call the 'receivedEvent'
