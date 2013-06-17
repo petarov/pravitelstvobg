@@ -30,7 +30,6 @@ var storage = {
 	},
 	
 	init: function() {
-		console.log('storage init: done');
 		this.storage = window.localStorage;
 	},
 	save: function(dataType, items) {
