@@ -24,7 +24,7 @@
 
 var app = {
 	Options: {
-		VIBRATE: 200,
+		VIBRATE: 100,
 		VIBRATE_CLICK: 100
 	},
 	/**
