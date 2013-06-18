@@ -171,10 +171,9 @@ var app = {
 	 */
 	onGotoLink: function(event) {
 		event.preventDefault();
-
-		// vibrate signal
+		// vibrate on click
 		navigator.notification.vibrate(app.Options.VIBRATE_CLICK);		
-		
+		// open news item in an InAppBrowser instance
 		var ref = window.open($(this).attr('href'), '_blank', 'location=no');
 	},
     /**
@@ -252,7 +251,7 @@ var app = {
     	// enhance
 //    	$page.page();
     	
-    	$content.find( ":jqmData(role=listview)" ).listview();
+    	$content.find(":jqmData(role=listview)").listview();
     	
     	this.scroller = new iScroll($content[0]);
     	this.scroller.refresh();
