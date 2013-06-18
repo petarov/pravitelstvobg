@@ -144,8 +144,8 @@ var app = {
     		} else {
     			if (pageData.items.length > 0) {
     				// remove old data
-    		    	var pageData = storage.get(pageInfo.storageName);
-    		    	if (pageData) {
+    		    	var currentPageData = storage.get(pageInfo.storageName);
+    		    	if (currentPageData) {
     		    		storage.remove(pageInfo.storageName);
     		    	}
     				// save new data
