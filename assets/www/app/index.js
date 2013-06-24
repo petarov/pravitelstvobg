@@ -214,9 +214,12 @@ var app = {
     	var $content = $page.children( ":jqmData(role=content)" );
 
     	// set last update info
-		var day = moment(pageData.lastUpdate);
+		var day = moment(pageData.lastUpdate).utc();
+		var now = new moment().utc();
+		var date_text = day.isBefore(now) ? day.from(now) : day.format("DD-MM-YYYY HH:mm");
+		
 		var mark = '<div id="wrapper"><div id="scroller">';
-		mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
+		mark += '<div data-role="lastUpdate" class="datetime">от ' + date_text + '</div>';
 		
 		// add items
 //		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
