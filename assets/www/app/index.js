@@ -144,8 +144,8 @@ var app = {
     		} else {
     			if (pageData.items.length > 0) {
     				// remove old data
-    		    	var pageData = storage.get(pageInfo.storageName);
-    		    	if (pageData) {
+    		    	var oldPageData = storage.get(pageInfo.storageName);
+    		    	if (oldPageData) {
     		    		storage.remove(pageInfo.storageName);
     		    	}
     				// save new data
@@ -215,9 +215,11 @@ var app = {
     	var $content = $page.children( ":jqmData(role=content)" );
 
     	// set last update info
-		var day = moment(pageData.lastUpdate);
-		var mark = '<div id="wrapper"><div id="scroller">';
-		mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
+    	var mark = '<div id="wrapper"><div id="scroller">';
+    	if (pageData.lastUpdate) {
+    		var day = moment(pageData.lastUpdate);
+			mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
+    	}
 		
 		// add items
 //		var tpl = '<li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="c" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-btn-up-c"><div class="ui-btn-inner ui-li"><div class="ui-btn-text"><a href="$$LINK$$" class="ui-link-inherit" data-role="ilink"><h3 class="ui-li-heading">$$TITLE$$</h3><p class="ui-li-desc">$$DESC$$</p></a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>';
