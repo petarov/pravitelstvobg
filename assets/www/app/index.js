@@ -144,8 +144,8 @@ var app = {
     		} else {
     			if (pageData.items.length > 0) {
     				// remove old data
-    		    	var oldPageData = storage.get(pageInfo.storageName);
-    		    	if (oldPageData) {
+    		    	var currentPageData = storage.get(pageInfo.storageName);
+    		    	if (currentPageData) {
     		    		storage.remove(pageInfo.storageName);
     		    	}
     				// save new data
@@ -171,10 +171,9 @@ var app = {
 	 */
 	onGotoLink: function(event) {
 		event.preventDefault();
-
-		// vibrate signal
+		// vibrate on click
 		navigator.notification.vibrate(app.Options.VIBRATE_CLICK);		
-		
+		// open news item in an InAppBrowser instance
 		var ref = window.open($(this).attr('href'), '_blank', 'location=no');
 	},
     /**
@@ -214,10 +213,12 @@ var app = {
     	var $page = $("div[id='" + pageInfo.id + "']");
     	var $content = $page.children( ":jqmData(role=content)" );
 
-    	// set last update info
+    	// set last update info 	
     	var mark = '<div id="wrapper"><div id="scroller">';
     	if (pageData.lastUpdate) {
-    		var day = moment(pageData.lastUpdate);
+			var day = moment(pageData.lastUpdate).utc();
+			var now = new moment().utc();
+			var date_text = day.isBefore(now) ? day.from(now) : day.format("DD-MM-YYYY HH:mm");
 			mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
     	}
 		
@@ -254,7 +255,7 @@ var app = {
     	// enhance
 //    	$page.page();
     	
-    	$content.find( ":jqmData(role=listview)" ).listview();
+    	$content.find(":jqmData(role=listview)").listview();
     	
     	this.scroller = new iScroll($content[0]);
     	this.scroller.refresh();
