@@ -1,7 +1,7 @@
 _.o0 PravitelstvoBG 0o._
 =========================
 
-Simple RSS reader mobile app for [government.bg](http://government.bg)
+[PravitelstvoBG](https://play.google.com/store/apps/details?id=net.vexelon.pravitelstvobg) is a simple RSS reader mobile app for [government.bg](http://government.bg)
 
 **Note:** This application is localized only in Bulgarian language.
 
