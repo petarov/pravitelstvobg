@@ -219,7 +219,7 @@ var app = {
 			var day = moment(pageData.lastUpdate).utc();
 			var now = new moment().utc();
 			var date_text = day.isBefore(now) ? day.from(now) : day.format("DD-MM-YYYY HH:mm");
-			mark += '<div data-role="lastUpdate" class="datetime">от ' + moment().startOf('hour').fromNow() + '</div>';
+			mark += '<div data-role="lastUpdate" class="datetime">от ' + date_text + '</div>'; // moment().startOf('hour').fromNow()
     	}
 		
 		// add items
