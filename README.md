@@ -23,7 +23,7 @@ _.o0 PravitelstvoBG 0o._
 # Libraries
 
   * PravitelstvoBG is based on [PhoneGap](http://phonegap.com/) mobile framework.
-  * [jQuery Mobile](http://jquerymobile.com/) - TjQuery Mobile: Touch-Optimized Web Framework for Smartphones & Tablets.
+  * [jQuery Mobile](http://jquerymobile.com/) - jQuery Mobile: Touch-Optimized Web Framework for Smartphones & Tablets.
   * [jQuery](http://jquery.com/) - The Write Less, Do More, JavaScript Library.
   * [Moment.js](http://momentjs.com/) - A 5.5kb javascript date library for parsing, validating, manipulating, and formatting dates.
   * [iScroll4](http://cubiq.org/iscroll-4) - Smooth scrolling for the web.
