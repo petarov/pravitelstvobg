@@ -1,47 +1,50 @@
 angular.module('starter.services', [])
 
 /**
- * A simple example service that returns some data.
+ * Fetch news items for given source
+ * @param  {[type]} $q       [description]
+ * @param  {[type]} NSOURCES [description]
+ * @return {[type]}          [description]
  */
-.factory('NewsMock', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var news = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' },
-    { id: 4, name: 'Bla blaa' }
-  ];
-
+.factory('News', function($q, NSOURCES) {
   return {
-    all: function() {
-      return news;
-    },
-    get: function(id) {
-      // Simple index lookup
-      return news[id];
-    }
-  }
-})
+    all: function(source, forceUpdate) {
+      var deferred = $q.defer()
+        , url = ''
+        , storedData = storage.get(source.name)
+        , update = forceUpdate === true;
 
-.factory('News', function($q) {
+      // return cached data
+      if (storedData && !update) {
+        deferred.resolve(storedData);
+        return deferred.promise;
+      }
 
-  return {
-    all: function() {
-      var deferred = $q.defer();
-
-      grss.fetch('http://localhost/news.rss', function(data, err) {
+      // fetch data from http
+      grss.fetch('http://192.168.1.125/news.rss', function(data, err) {
         if (err) {
-          console.log(err);
-          return;
-        }
+          console.error(err);
+          deferred.reject('Проблем при зареждане на информацията! Проверете интернет връзката си.');
+        } else if (data.items.length > 0) {
+          
+          // normalize data items props
+          for (var i = 0; i < data.items.length; i++) {
+            data.items[i].id = i;
+            data.items[i].pubDate = moment(data.items[i].pubDate).format("DD-MM-YYYY HH:mm");
+          };
+          
+          // remove prev data
+          if (storedData) {
+            storage.remove(source.name);
+          }
+          // save new data
+          storage.save(source.name, data.items);
 
-        if (data.items.length > 0) {
+          // resolve promise
           deferred.resolve(data.items);
+
         } else {
-          //TODO: err
+          deferred.reject('Няма налична нова информация! Опитайте по-късно.');
         }
 
       });
@@ -49,13 +52,18 @@ angular.module('starter.services', [])
       return deferred.promise;
     },
 
-    // all: function() {
-    //   return news;
-    // },
+    get: function(source, id) {
+      var deferred = $q.defer();
 
-    get: function(id) {
-      // Simple index lookup
-      return {}; //news[id];
+      var storedData = storage.get(source.name);
+      var item = storedData && storedData[id];
+      if (item) {
+        deferred.resolve(item);
+      } else {
+        deferred.reject('Новината не може да бъде открита! Моля обновете.');
+      }
+
+      return deferred.promise;
     }
   }
 })

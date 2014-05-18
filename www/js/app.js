@@ -7,6 +7,12 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
+.constant('NSOURCES', {
+  NEWS: {name: 'news', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'},
+  EVENTS: {name: 'events', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'},
+  DECISIONS: {name: 'decisions', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'}
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -18,6 +24,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    // init local storage
+    storage.init();     
+    // init date-time lib
+    moment.lang('bg', {
+      relativeTime : {
+        future: "след %s",
+        past:   "преди %s",
+        s:  "секунди",
+        m:  "минута",
+        mm: "%d минути",
+        h:  "час",
+        hh: "%d часа",
+        d:  "денy",
+        dd: "%d дни",
+        M:  "месец",
+        MM: "%d месеца",
+        y:  "година",
+        yy: "%d години"
+      }
+    });
+    moment.lang('bg');
   });
 })
 

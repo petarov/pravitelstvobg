@@ -23,11 +23,7 @@
  */
 
 var grss = {
-  
-  URL_NEWS: 'http://www.government.bg/cgi-bin/e-cms/rss.pl',
-  URL_EVENTS: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003',
-  URL_DECISIONS: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004',
-  
+   
   /**
    * Fetch RSS info
    */
