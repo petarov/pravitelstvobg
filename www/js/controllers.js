@@ -5,21 +5,23 @@ angular.module('starter.controllers', [])
 
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
 
-  $ionicLoading.show({
-    template: 'Зареждане...'
-  });
+  $scope.updateNews = function(force) {
+    $ionicLoading.show({
+      template: 'Зареждане...'
+    });
 
-  News.all(NSOURCES.NEWS).then(function(resp) {
-    $scope.news = resp;
-    $ionicLoading.hide();
-  },
-  function(err) {
-    $ionicLoading.hide();
-    //TODO
-    //
-  });
+    News.all(NSOURCES.NEWS, force).then(function(resp) {
+      $scope.news = resp;
+      $ionicLoading.hide();
+    },
+    function(err) {
+      $ionicLoading.hide();
+      //TODO
+      //
+    });    
+  };
 
-
+  $scope.updateNews(false);
 
 })
 
