@@ -29,6 +29,7 @@ angular.module('pbg.controllers', [])
 
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Новини';
+  $scope.route = NSOURCES.NEWS.name;
 
   $scope.updateNews = function(force) {
     $ionicLoading.show({
@@ -57,7 +58,8 @@ angular.module('pbg.controllers', [])
 })
 
 .controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
-  News.get(NSOURCES.NEWS, $stateParams.id).then(function(resp) {
+  console.log($stateParams.route);
+  News.get($stateParams.route, $stateParams.id).then(function(resp) {
     $scope.item = resp;
   },
   function(err) {
@@ -67,10 +69,16 @@ angular.module('pbg.controllers', [])
 
 .controller('EventsCtrl', function($scope) {
   $scope.tabTitle = 'Събития';
+  $scope.route = NSOURCES.EVENTS.name;
+
+  //TODO
 })
 
 .controller('DecisionsCtrl', function($scope) {
   $scope.tabTitle = 'Решения';
+  $scope.route = NSOURCES.DECISIONS.name;
+
+  //TODO
 })
 
 ; //eof

@@ -18,7 +18,7 @@
       <div class="item item-divider">{{lastUpdate}}</div>
       <ion-item ng-repeat="item in news" 
         type="item-text-wrap" 
-        href="#/tab/news/{{item.id}}" 
+        href="#/tab/news/{{route}}/{{item.id}}" 
         class="item-icon-right">
         {{item.title}}
         <i class="icon ion-chevron-right"></i>

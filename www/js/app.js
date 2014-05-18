@@ -103,7 +103,7 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       }
     })
     .state('tab.news-detail', {
-      url: '/news/:id',
+      url: '/news/:route/:id',
       views: {
         'tab-news': {
           templateUrl: 'templates/news-detail.html',

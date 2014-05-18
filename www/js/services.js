@@ -86,10 +86,10 @@ angular.module('pbg.services', [])
       return deferred.promise;
     },
 
-    get: function(source, id) {
+    get: function(sourceName, id) {
       var deferred = $q.defer();
 
-      var storedData = storage.get(source.name);
+      var storedData = storage.get(sourceName);
       var item = (storedData && storedData.items) && storedData.items[id];
       if (item) {
         deferred.resolve(item);
