@@ -116,7 +116,7 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       url: '/events',
       views: {
         'tab-events': {
-          templateUrl: 'templates/tab-events.html',
+          templateUrl: 'templates/tab-news.html',
           controller: 'EventsCtrl'
         }
       }
@@ -126,7 +126,7 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       url: '/decisions',
       views: {
         'tab-decisions': {
-          templateUrl: 'templates/tab-decisions.html',
+          templateUrl: 'templates/tab-news.html',
           controller: 'DecisionsCtrl'
         }
       }

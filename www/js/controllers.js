@@ -28,6 +28,7 @@ angular.module('pbg.controllers', [])
 })
 
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
+  $scope.tabTitle = 'Новини';
 
   $scope.updateNews = function(force) {
     $ionicLoading.show({
@@ -41,8 +42,13 @@ angular.module('pbg.controllers', [])
     },
     function(err) {
       $ionicLoading.hide();
-      //TODO
-      //
+      // Notify user
+      navigator.notification.alert(
+        err, // message
+        null,   // callback
+        'Грешка', // title
+        'OK'    // buttonName
+        );  
     });    
   };
 
@@ -60,9 +66,11 @@ angular.module('pbg.controllers', [])
 })
 
 .controller('EventsCtrl', function($scope) {
+  $scope.tabTitle = 'Събития';
 })
 
 .controller('DecisionsCtrl', function($scope) {
+  $scope.tabTitle = 'Решения';
 })
 
 ; //eof
