@@ -1,9 +1,17 @@
 <ion-view title="News">
+
+  <ion-nav-buttons side="right">
+    <button class="button button-positive" ng-click="doSomething()">
+      <i class="icon ion-refresh"></i>Обнови
+    </button>
+  </ion-nav-buttons>
+
   <ion-content class="has-header">
     <ion-list>
       <ion-item ng-repeat="item in news" type="item-text-wrap" href="#/tab/news/{{item.id}}">
-        {{item.name}}
+        {{item.title}}
       </ion-item>
     </ion-list>
   </ion-content>
+
 </ion-view>

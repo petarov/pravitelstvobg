@@ -3,8 +3,22 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {
 })
 
-.controller('NewsCtrl', function($scope, News) {
-  $scope.news = News.all();
+.controller('NewsCtrl', function($scope, $ionicLoading, News) {
+
+  $ionicLoading.show({
+    template: 'Зареждане...'
+  });
+
+  News.all().then(function(resp) {
+    $scope.news = resp;
+    $ionicLoading.hide();
+  },
+  function(err) {
+    $ionicLoading.hide();
+    //TODO
+    //
+  });
+
 })
 
 .controller('NewsDetailCtrl', function($scope, $stateParams, News) {
