@@ -1,8 +1,8 @@
 <ion-view title="News">
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        {{friend.name}}
+      <ion-item ng-repeat="item in news" type="item-text-wrap" href="#/tab/news/{{item.id}}">
+        {{item.name}}
       </ion-item>
     </ion-list>
   </ion-content>

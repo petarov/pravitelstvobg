@@ -58,7 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
     .state('tab.news-detail', {
-      url: '/news/:friendId',
+      url: '/news/:id',
       views: {
         'tab-news': {
           templateUrl: 'templates/news-detail.html',
