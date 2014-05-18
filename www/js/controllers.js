@@ -3,13 +3,18 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
+.controller('NewsCtrl', function($scope, Friends) {
   $scope.friends = Friends.all();
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
+.controller('NewsDetailCtrl', function($scope, $stateParams, Friends) {
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('AccountCtrl', function($scope) {
-});
+.controller('EventsCtrl', function($scope) {
+})
+
+.controller('DecisionsCtrl', function($scope) {
+})
+
+; //eof
