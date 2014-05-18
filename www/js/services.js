@@ -54,18 +54,28 @@ angular.module('pbg.services', [])
           // normalize data items props
           for (var i = 0; i < data.items.length; i++) {
             data.items[i].id = i;
-            data.items[i].pubDate = moment(data.items[i].pubDate).format("DD-MM-YYYY HH:mm");
+            data.items[i].pubDate = moment(Date.parse(data.items[i].pubDate))
+              .format("DD-MM-YYYY HH:mm");
           };
+
+          // date-time as text info
+          var dt = moment(Date.parse(data.lastUpdate));
+          if (dt.isValid()) {
+            var day = moment(dt).utc()
+              , now = new moment().utc()
+              , text = day.isBefore(now) ? day.from(now) : day.format("DD-MM-YYYY HH:mm");
+            data.lastUpdate = text;
+          }
           
           // remove prev data
           if (storedData) {
             storage.remove(source.name);
           }
           // save new data
-          storage.save(source.name, data.items);
+          storage.save(source.name, data);
 
           // resolve promise
-          deferred.resolve(data.items);
+          deferred.resolve(data);
 
         } else {
           deferred.reject('Няма налична нова информация! Опитайте по-късно.');
@@ -80,7 +90,7 @@ angular.module('pbg.services', [])
       var deferred = $q.defer();
 
       var storedData = storage.get(source.name);
-      var item = storedData && storedData[id];
+      var item = (storedData && storedData.items) && storedData.items[id];
       if (item) {
         deferred.resolve(item);
       } else {

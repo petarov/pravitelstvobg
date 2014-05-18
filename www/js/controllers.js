@@ -35,7 +35,8 @@ angular.module('pbg.controllers', [])
     });
 
     News.all(NSOURCES.NEWS, force).then(function(resp) {
-      $scope.news = resp;
+      $scope.news = resp.items;
+      $scope.lastUpdate = resp.lastUpdate;
       $ionicLoading.hide();
     },
     function(err) {
