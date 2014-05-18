@@ -2,17 +2,25 @@
 <widget id="com.ionicframework.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>PravitelstvoBG 2.0</name>
     <description>
-        An Ionic Framework and Cordova project.
+        A simple RSS reader mobile app for http://government.bg.
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+    <author href="http://cordova.io" email="dev@cordova.apache.org">
+        Petar Petrov
+    </author> 
+    
     <content src="index.html" />
+    
     <access origin="*" />
+    <access origin="http://www.government.bg/" subdomains="true" />    
+
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
+ 
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="useBrowserHistory" value="true" />
+    <preference name="exit-on-suspend" value="false" />
 
     <!-- Don't store local date in an iCloud backup. Turn this to "cloud" to enable storage 
          to be sent to iCloud. Note: enabling this could result in Apple rejecting your app.
