@@ -22,39 +22,34 @@
  * THE SOFTWARE.
  */
 
-var storage = {
-	DataTypes: {
-		NEWS: 'news',
-		EVENTS: 'events',
-		DECISIONS: 'decisions'
-	},
-	
-	init: function() {
-		this.storage = window.localStorage;
-	},
-	save: function(dataType, items) {
-		if (dataType && this.storage) {
-			this.storage.setItem(dataType, JSON.stringify(items));
-		}
-	},
-	get: function(dataType) {
-		if (dataType && this.storage) {
-			var value = this.storage.getItem(dataType);
-			if (value) {
-				return JSON.parse(this.storage.getItem(dataType));
-			}
-		}
-		
-		return null;
-	},
-	remove: function(dataType) {
-		if (dataType && this.storage) {
-			this.storage.removeItem(dataType);
-		}
-	},
-	clear: function() {
-		if (this.storage) {
-			this.storage.clear();
-		}
-	}
+ var storage = {
+
+  init: function() {
+    this.storage = window.localStorage;
+  },
+  save: function(dataType, items) {
+    if (dataType && this.storage) {
+      this.storage.setItem(dataType, JSON.stringify(items));
+    }
+  },
+  get: function(dataType) {
+    if (dataType && this.storage) {
+      var value = this.storage.getItem(dataType);
+      if (value) {
+        return JSON.parse(this.storage.getItem(dataType));
+      }
+    }
+
+    return null;
+  },
+  remove: function(dataType) {
+    if (dataType && this.storage) {
+      this.storage.removeItem(dataType);
+    }
+  },
+  clear: function() {
+    if (this.storage) {
+      this.storage.clear();
+    }
+  }
 }
