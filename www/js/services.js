@@ -110,6 +110,13 @@ angular.module('pbg.services', [])
  * @return {[type]}       [description]
  */
 .factory('RSS', function($q, $http) {
+
+  var e = document.createElement('div');
+  function unescapeHtml(text) {
+    e.innerHTML = text;
+    return e.childNodes.length === 0 ? text : e.childNodes[0].nodeValue;    
+  };
+
   return {
     all: function(url) {
       var deferred = $q.defer();
@@ -120,8 +127,8 @@ angular.module('pbg.services', [])
         $xml = $(data);
         $xml.find('item').each(function() {
           var node = {};
-          node.title = $(this).find('title').text();
-          node.desc = $(this).find('description').text(); //.replace(/<(?:.|\n)*?>/gm, '');
+          node.title = unescapeHtml($(this).find('title').text());
+          node.desc = unescapeHtml($(this).find('description').text());
           node.pubDate = $(this).find('pubDate').text();
           node.link = $(this).find('link').text();
           result.items.push(node);
