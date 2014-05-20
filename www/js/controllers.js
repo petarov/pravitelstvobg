@@ -32,6 +32,10 @@ var updateNews = function($scope, $ionicLoading, source, News) {
       $scope.news = resp.items;
       $scope.lastUpdate = resp.lastUpdate;
       $ionicLoading.hide();
+      // show badge only if we did a fresh update
+      $scope.badge = {};
+      $scope.badge.show = force;
+      $scope.badge.count = resp.items.length;
     },
     function(err) {
       $ionicLoading.hide();
@@ -42,7 +46,7 @@ var updateNews = function($scope, $ionicLoading, source, News) {
         'Грешка', // title
         'OK'    // buttonName
         );  
-    });    
+    });
   };
 
   $scope.updateNews(false);

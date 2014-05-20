@@ -15,7 +15,11 @@
     </div> -->
 
     <ion-list>
-      <div class="item item-divider">{{lastUpdate}}</div>
+      <div class="item item-divider item-icon-left">
+        <i class="icon ion-clock"></i>
+        {{lastUpdate}}
+        <span ng-show="badge.show" class="badge badge-assertive">{{badge.count}}</span>
+      </div>
       <ion-item ng-repeat="item in news" 
         type="item-text-wrap" 
         href="#/tab/news/{{route}}/{{item.id}}" 
