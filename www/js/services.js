@@ -103,19 +103,21 @@ angular.module('pbg.services', [])
   }
 })
 
+/**
+ * Fetch RSS data for given url
+ * @param  {[type]} $q    [description]
+ * @param  {[type]} $http [description]
+ * @return {[type]}       [description]
+ */
 .factory('RSS', function($q, $http) {
   return {
     all: function(url) {
       var deferred = $q.defer();
 
       $http.get(url).success(function(data) {
-
-        // format items
         var result = {lastUpdate: '', items: []};
+        // parse items
         $xml = $(data);
-        
-        result.lastUpdate = $xml.find('lastBuildDate').text();
-        
         $xml.find('item').each(function() {
           var node = {};
           node.title = $(this).find('title').text();
@@ -124,9 +126,11 @@ angular.module('pbg.services', [])
           node.link = $(this).find('link').text();
           result.items.push(node);
         });
-        
-        // resolve 
+        result.lastUpdate = $xml.find('lastBuildDate').text();
+
+        // resolve promise
         deferred.resolve(result);
+
       }).error(function(err) {
         deferred.reject(err);
       });
