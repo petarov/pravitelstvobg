@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-var updateNews = function($scope, $ionicLoading, NSOURCES, News) {
+var updateNews = function($scope, $ionicLoading, source, News) {
   $scope.updateNews = function(force) {
     $ionicLoading.show({
       template: 'Зареждане...'
     });
 
-    News.all(NSOURCES.NEWS, force).then(function(resp) {
+    News.all(source, force).then(function(resp) {
       $scope.news = resp.items;
       $scope.lastUpdate = resp.lastUpdate;
       $ionicLoading.hide();
@@ -57,7 +57,7 @@ angular.module('pbg.controllers', [])
   $scope.tabTitle = 'Новини';
   $scope.route = NSOURCES.NEWS.name;
 
-  updateNews($scope, $ionicLoading, NSOURCES, News);
+  updateNews($scope, $ionicLoading, NSOURCES.NEWS, News);
 })
 
 .controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
@@ -74,14 +74,14 @@ angular.module('pbg.controllers', [])
   $scope.tabTitle = 'Събития';
   $scope.route = NSOURCES.EVENTS.name;
 
-  updateNews($scope, $ionicLoading, NSOURCES, News);
+  updateNews($scope, $ionicLoading, NSOURCES.EVENTS, News);
 })
 
 .controller('DecisionsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Решения';
   $scope.route = NSOURCES.DECISIONS.name;
 
-  updateNews($scope, $ionicLoading, NSOURCES, News);
+  updateNews($scope, $ionicLoading, NSOURCES.DECISIONS, News);
 })
 
 ; //eof
