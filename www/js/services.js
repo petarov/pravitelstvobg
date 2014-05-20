@@ -30,7 +30,7 @@ angular.module('pbg.services', [])
  * @param  {[type]} NSOURCES [description]
  * @return {[type]}          [description]
  */
-.factory('News', function($q, NSOURCES) {
+.factory('News', function($q, NSOURCES, RSS) {
   return {
     all: function(source, forceUpdate) {
       var deferred = $q.defer()
@@ -45,11 +45,8 @@ angular.module('pbg.services', [])
       }
 
       // fetch data from http
-      grss.fetch(source.url, function(data, err) {
-        if (err) {
-          console.error(err);
-          deferred.reject('Проблем при зареждане на информацията! Проверете интернет връзката си.');
-        } else if (data.items.length > 0) {
+      RSS.all(source.url).then(function(data) {
+        if (data.items.length > 0) {
           
           // normalize data items props
           for (var i = 0; i < data.items.length; i++) {
@@ -81,6 +78,10 @@ angular.module('pbg.services', [])
           deferred.reject('Няма налична нова информация! Опитайте по-късно.');
         }
 
+      },
+      function(err) {
+        console.error(err);
+        deferred.reject('Проблем при зареждане на информацията! Проверете интернет връзката си.');
       });
 
       return deferred.promise;
@@ -96,6 +97,39 @@ angular.module('pbg.services', [])
       } else {
         deferred.reject('Новината не може да бъде открита! Моля обновете.');
       }
+
+      return deferred.promise;
+    }
+  }
+})
+
+.factory('RSS', function($q, $http) {
+  return {
+    all: function(url) {
+      var deferred = $q.defer();
+
+      $http.get(url).success(function(data) {
+
+        // format items
+        var result = {lastUpdate: '', items: []};
+        $xml = $(data);
+        
+        result.lastUpdate = $xml.find('lastBuildDate').text();
+        
+        $xml.find('item').each(function() {
+          var node = {};
+          node.title = $(this).find('title').text();
+          node.desc = $(this).find('description').text(); //.replace(/<(?:.|\n)*?>/gm, '');
+          node.pubDate = $(this).find('pubDate').text();
+          node.link = $(this).find('link').text();
+          result.items.push(node);
+        });
+        
+        // resolve 
+        deferred.resolve(result);
+      }).error(function(err) {
+        deferred.reject(err);
+      });
 
       return deferred.promise;
     }

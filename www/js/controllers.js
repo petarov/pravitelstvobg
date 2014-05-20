@@ -60,7 +60,7 @@ angular.module('pbg.controllers', [])
   updateNews($scope, $ionicLoading, NSOURCES.NEWS, News);
 })
 
-.controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
+.controller('NewsDetailCtrl', function($scope, $stateParams, News) {
   console.log($stateParams.route);
   News.get($stateParams.route, $stateParams.id).then(function(resp) {
     $scope.item = resp;
