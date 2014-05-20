@@ -25,6 +25,7 @@ To build and run the app use:
     $ ionic platform android
     $ cordova plugin add org.apache.cordova.dialogs
     $ cordova plugin add org.apache.cordova.vibration
+    $ cordova plugin add https://github.com/driftyco/ionic-plugins-keyboard.git
     $ cordova plugin add https://github.com/whiteoctober/cordova-plugin-app-version.git
     $ ionic build android
     $ ionic emulate android
