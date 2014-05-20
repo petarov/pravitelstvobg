@@ -55,6 +55,9 @@ var updateNews = function($scope, $ionicLoading, source, News) {
 angular.module('pbg.controllers', [])
 
 .controller('AboutCtrl', function($scope) {
+  cordova.getAppVersion(function (version) {
+    $scope.appVersion = version;
+  });  
 })
 
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
