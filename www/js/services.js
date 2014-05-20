@@ -124,9 +124,12 @@ angular.module('pbg.services', [])
         try { 
            dom = (new DOMParser()).parseFromString(xml, "text/xml"); 
         } 
-        catch (e) { dom = null; }
-     }
-     else if (window.ActiveXObject) {
+        catch (e) { 
+          console.error(e);
+          dom = null; 
+        }
+
+     } else if (window.ActiveXObject) {
         try {
            dom = new ActiveXObject('Microsoft.XMLDOM');
            dom.async = false;
@@ -134,10 +137,12 @@ angular.module('pbg.services', [])
 
               window.alert(dom.parseError.reason + dom.parseError.srcText);
         } 
-        catch (e) { dom = null; }
+        catch (e) { 
+          console.error(e);
+          dom = null; 
+        }
+
      }
-     else
-        console.error("cannot parse xml string!");
      return dom;
   };
 
@@ -153,6 +158,10 @@ angular.module('pbg.services', [])
 
         // parse xml data to DOM object
         var parsed = parseXml(data);
+        if (!parsed) {
+          deferred.reject('Гришка при четена на листа с новини! Моля опитайте по-късно.');
+          return deferred.promise;
+        }
         // convert DOM object to JSON string
         var json = xml2json(parsed);
         // fix nasty bug during convertion
