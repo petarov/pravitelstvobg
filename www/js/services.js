@@ -118,6 +118,29 @@ angular.module('pbg.services', [])
     return e.childNodes.length === 0 ? text : e.childNodes[0].nodeValue;    
   };
 
+  function parseXml(xml) {
+     var dom = null;
+     if (window.DOMParser) {
+        try { 
+           dom = (new DOMParser()).parseFromString(xml, "text/xml"); 
+        } 
+        catch (e) { dom = null; }
+     }
+     else if (window.ActiveXObject) {
+        try {
+           dom = new ActiveXObject('Microsoft.XMLDOM');
+           dom.async = false;
+           if (!dom.loadXML(xml)) // parse error ..
+
+              window.alert(dom.parseError.reason + dom.parseError.srcText);
+        } 
+        catch (e) { dom = null; }
+     }
+     else
+        console.error("cannot parse xml string!");
+     return dom;
+  };
+
   return {
     all: function(url) {
       var deferred = $q.defer();
@@ -127,17 +150,27 @@ angular.module('pbg.services', [])
           lastUpdate: '', 
           items: []
         };
-        // parse items
-        $xml = $(data);
-        $xml.find('item').each(function() {
-          var node = {};
-          node.title = $(this).find('title').text();
-          node.desc = ($(this).find('description').text());
-          node.pubDate = $(this).find('pubDate').text();
-          node.link = $(this).find('link').text();
-          result.items.push(node);
-        });
-        result.lastUpdate = $xml.find('lastBuildDate').text();
+
+        // parse xml data to DOM object
+        var parsed = parseXml(data);
+        // convert DOM object to JSON string
+        var json = xml2json(parsed);
+        // fix nasty bug during convertion
+        // TODO: fix in xml2json
+        json = json.replace('undefined', '');
+        // get JSON object
+        json = JSON.parse(json);
+        // get list of news items
+        result.items = json.rss.channel.item;
+
+        for (var i = 0; i < result.items.length; i++) {
+          var item = result.items[i];
+          // escape title 2 times, since it &-s were already escaped
+          // when the xml was being parsed
+          item.title = unescapeHtml(unescapeHtml(item.title));
+        };
+        
+        result.lastUpdate = json.rss.channel.pubDate;
 
         // resolve promise
         deferred.resolve(result);
