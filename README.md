@@ -18,12 +18,22 @@ Please read [HISTORY](HISTORY) for a list of changes.
   * Requires Android 2.1 [API Level 7](http://developer.android.com/about/versions/android-2.1.html) or above
   * Requires Internet connection
 
+# Development
+
+To build and run the app use:
+
+    $ ionic platform android
+    $ cordova plugin add org.apache.cordova.dialogs
+    $ cordova plugin add org.apache.cordova.vibration
+    $ ionic build android
+    $ ionic emulate android
+
 # Dependencies
 
-  * PravitelstvoBG is built using [Ionic](http://ionicframework.com/).
+  * Built using [Ionic](http://ionicframework.com/).
   * [Moment.js](http://momentjs.com/) - A javascript date library for parsing, validating, 
   manipulating, and formatting dates.
-  * [jQuery](http://jquery.com/) - The Write Less, Do More, JavaScript Library.  
+  * [xml2json](http://goessner.net/download/prj/jsonxml/) - xml2json javascript library.
 
 # License
 
