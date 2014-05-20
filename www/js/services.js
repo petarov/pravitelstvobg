@@ -45,7 +45,7 @@ angular.module('pbg.services', [])
       }
 
       // fetch data from http
-      grss.fetch('http://192.168.1.125/news.rss', function(data, err) {
+      grss.fetch(source.url, function(data, err) {
         if (err) {
           console.error(err);
           deferred.reject('Проблем при зареждане на информацията! Проверете интернет връзката си.');

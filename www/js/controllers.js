@@ -22,15 +22,7 @@
  * THE SOFTWARE.
  */
 
-angular.module('pbg.controllers', [])
-
-.controller('AboutCtrl', function($scope) {
-})
-
-.controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
-  $scope.tabTitle = 'Новини';
-  $scope.route = NSOURCES.NEWS.name;
-
+var updateNews = function($scope, $ionicLoading, NSOURCES, News) {
   $scope.updateNews = function(force) {
     $ionicLoading.show({
       template: 'Зареждане...'
@@ -54,7 +46,18 @@ angular.module('pbg.controllers', [])
   };
 
   $scope.updateNews(false);
+};
 
+angular.module('pbg.controllers', [])
+
+.controller('AboutCtrl', function($scope) {
+})
+
+.controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
+  $scope.tabTitle = 'Новини';
+  $scope.route = NSOURCES.NEWS.name;
+
+  updateNews($scope, $ionicLoading, NSOURCES, News);
 })
 
 .controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
@@ -67,18 +70,18 @@ angular.module('pbg.controllers', [])
   });
 })
 
-.controller('EventsCtrl', function($scope) {
+.controller('EventsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Събития';
   $scope.route = NSOURCES.EVENTS.name;
 
-  //TODO
+  updateNews($scope, $ionicLoading, NSOURCES, News);
 })
 
-.controller('DecisionsCtrl', function($scope) {
+.controller('DecisionsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Решения';
   $scope.route = NSOURCES.DECISIONS.name;
 
-  //TODO
+  updateNews($scope, $ionicLoading, NSOURCES, News);
 })
 
 ; //eof
