@@ -35,6 +35,8 @@ To build and run the app use:
   * [Moment.js](http://momentjs.com/) - A javascript date library for parsing, validating, 
   manipulating, and formatting dates.
   * [xml2json](http://goessner.net/download/prj/jsonxml/) - xml2json javascript library.
+  * [cordova-plugin-app-version.git](https://github.com/whiteoctober/cordova-plugin-app-version.git) 
+  - Cordova Android version plugin.
 
 # License
 
