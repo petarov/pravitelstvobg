@@ -34,7 +34,7 @@ var updateNews = function($scope, $ionicLoading, source, News) {
       $ionicLoading.hide();
       // show badge only if we did a fresh update
       $scope.badge = {};
-      $scope.badge.show = force;
+      $scope.badge.show = force || resp.fromCache !== true;
       $scope.badge.count = resp.items.length;
     },
     function(err) {

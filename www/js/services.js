@@ -40,6 +40,7 @@ angular.module('pbg.services', [])
 
       // return cached data
       if (storedData && !update) {
+        storedData.fromCache = true;
         deferred.resolve(storedData);
         return deferred.promise;
       }
@@ -122,13 +123,16 @@ angular.module('pbg.services', [])
       var deferred = $q.defer();
 
       $http.get(url).success(function(data) {
-        var result = {lastUpdate: '', items: []};
+        var result = {
+          lastUpdate: '', 
+          items: []
+        };
         // parse items
         $xml = $(data);
         $xml.find('item').each(function() {
           var node = {};
-          node.title = unescapeHtml($(this).find('title').text());
-          node.desc = unescapeHtml($(this).find('description').text());
+          node.title = $(this).find('title').text();
+          node.desc = ($(this).find('description').text());
           node.pubDate = $(this).find('pubDate').text();
           node.link = $(this).find('link').text();
           result.items.push(node);
