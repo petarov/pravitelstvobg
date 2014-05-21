@@ -53,7 +53,7 @@ var updateNews = function($scope, $ionicLoading, source, News) {
 };
 
 var showNewsItem = function($scope, $stateParams, News, route) {
-  console.log(route);
+  // console.log(route);
   News.get(route, $stateParams.id).then(function(resp) {
     $scope.item = resp;
   },

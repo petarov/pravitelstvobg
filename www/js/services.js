@@ -22,6 +22,18 @@
  * THE SOFTWARE.
  */
 
+var convertDate2Text = function(date) {
+  // date-time as text info
+  var dt = moment(Date.parse(date));
+  if (dt.isValid()) {
+    var day = moment(dt).utc()
+      , now = new moment().utc()
+      , text = day.isBefore(now) ? day.from(now) : day.format("DD-MM-YYYY HH:mm");
+      return text;
+  }
+  return date;
+};
+
 angular.module('pbg.services', [])
 
 /**
@@ -52,18 +64,13 @@ angular.module('pbg.services', [])
           // normalize data items props
           for (var i = 0; i < data.items.length; i++) {
             data.items[i].id = i;
+            data.items[i].textDate = convertDate2Text(data.items[i].pubDate);
             data.items[i].pubDate = moment(Date.parse(data.items[i].pubDate))
               .format("DD-MM-YYYY HH:mm");
           };
 
           // date-time as text info
-          var dt = moment(Date.parse(data.lastUpdate));
-          if (dt.isValid()) {
-            var day = moment(dt).utc()
-              , now = new moment().utc()
-              , text = day.isBefore(now) ? day.from(now) : day.format("DD-MM-YYYY HH:mm");
-            data.lastUpdate = text;
-          }
+          data.lastUpdate = convertDate2Text(data.lastUpdate);
           
           // remove prev data
           if (storedData) {
