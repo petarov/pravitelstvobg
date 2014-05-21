@@ -12,6 +12,10 @@ var gulp = require('gulp')
   , fs = require('fs')
   , argv = require('yargs').argv;
 
+var Consts = {
+  RELEASE_NAME: 'PravitelstvoBG.apk'
+};
+
 var paths = {
   sass: ['./scss/**/*.scss']
 };
@@ -38,6 +42,10 @@ gulp.task('watch', function() {
 gulp.task('build', function() {
   var deferred = Q.defer();
 
+  try {
+    fs.unlinkSync(Consts.RELEASE_NAME);
+  } catch (e) {};
+
   var child = exec('cordova build --release android', function(err, stdout, stderr) {
     console.log(stdout);
     if (err) {
@@ -53,7 +61,7 @@ gulp.task('build', function() {
 /**
  * Sign release APK package
  */
-gulp.task('sign', function() {
+gulp.task('sign', ['build'], function() {
   var deferred = Q.defer();
 
   var ksPath = argv.ks;
@@ -76,35 +84,39 @@ gulp.task('sign', function() {
   var cmdline = 'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 '
     + ' -keystore ' + ksPath 
     + ' -storepass ' + ksPass
+    + ' -signedjar platforms/android/ant-build/PravitelstvoBG-release-signed.apk'
     + ' platforms/android/ant-build/PravitelstvoBG-release-unsigned.apk pravitelstvobg';
 
+  console.log(cmdline);
+
   var child = exec(cmdline,  function(err, stdout, stderr) {
-    console.error(stdout);
+    console.log(stdout);
     if (err) {
       console.error(stderr);
       deferred.reject('[ERROR] Cordova sign failed!');
     } else {
 
       //TODO: align
-
-      deferred.resolve();
+      var zcmd = 'zipalign -v 4 platforms/android/ant-build/PravitelstvoBG-release-signed.apk ' + Consts.RELEASE_NAME;
+      var zchild = exec(zcmd, function(err, stdout, stderr) {
+        console.log(stdout);
+        if (err) {
+          console.error(stderr);
+          deferred.reject('[ERROR] Cordova sign failed!');
+        } else {
+          // All OK!
+          deferred.resolve();
+        }
+      });
     }
   });
 
   return deferred.promise;  
 });
-/**
- * Build & Sign package
- */
-gulp.task('release', function() {
-  var deferred = Q.defer();
 
-  // TODO:
-
-  return deferred.promise;  
-});
 
 /**
  * Default
  */
 gulp.task('default', ['sass']);
+gulp.task('release', ['build', 'sign']);

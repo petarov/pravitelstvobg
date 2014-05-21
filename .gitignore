@@ -3,6 +3,7 @@
 *.sw*
 platforms/^.*
 merges/^.*
+*.apk
 
 ### nodejs
 node_modules/
