@@ -1,11 +1,16 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var sass = require('gulp-sass');
-var minifyCss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var exec = require('child_process').exec;
-var Q = require('q');
-var fs = require('fs');
+/**
+ * PravitelstvoBG Build Script
+ */
+
+var gulp = require('gulp')
+  , concat = require('gulp-concat')
+  , sass = require('gulp-sass')
+  , minifyCss = require('gulp-minify-css')
+  , rename = require('gulp-rename')
+  , exec = require('child_process').exec
+  , Q = require('q')
+  , fs = require('fs')
+  , argv = require('yargs').argv;
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -51,7 +56,7 @@ gulp.task('build', function() {
 gulp.task('sign', function() {
   var deferred = Q.defer();
 
-  var ksPath = gulp.env.ks;
+  var ksPath = argv.ks;
   if (ksPath) {
     if (!fs.existsSync(ksPath)) {
       console.error('[ERROR] Keystore not found at ' + ksPath + '!');
@@ -62,7 +67,7 @@ gulp.task('sign', function() {
     process.exit(-2);
   }
 
-  var ksPass = gulp.env.ksPass;
+  var ksPass = argv.ksPass;
   if (!ksPath) {
     console.error('[ERROR] Keystore password not specified! use --ksPass <password>');
     process.exit(-3);
