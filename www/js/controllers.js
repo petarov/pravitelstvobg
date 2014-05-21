@@ -68,6 +68,18 @@ angular.module('pbg.controllers', [])
 })
 
 .controller('NewsDetailCtrl', function($scope, $stateParams, News) {
+  $stateParams.route = 'news';
+  console.log($stateParams.route);
+  News.get($stateParams.route, $stateParams.id).then(function(resp) {
+    $scope.item = resp;
+  },
+  function(err) {
+    $scope.item = {title: err};
+  });
+})
+
+.controller('EventsDetailCtrl', function($scope, $stateParams, News) {
+  $stateParams.route = 'events';
   console.log($stateParams.route);
   News.get($stateParams.route, $stateParams.id).then(function(resp) {
     $scope.item = resp;

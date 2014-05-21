@@ -25,9 +25,12 @@
 angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 
 .constant('NSOURCES', {
-  NEWS: {name: 'news', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'},
-  EVENTS: {name: 'events', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'},
-  DECISIONS: {name: 'decisions', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'}
+  // NEWS: {name: 'news', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'},
+  // EVENTS: {name: 'events', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'},
+  // DECISIONS: {name: 'decisions', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'}
+  NEWS: {name: 'news', url: 'http://172.30.100.91:81/rss/news.xml'},
+  EVENTS: {name: 'events', url: 'http://172.30.100.91:81/rss/events.xml'},
+  DECISIONS: {name: 'decisions', url: 'http://172.30.100.91:81/rss/decisions.xml'}  
 })
 
 .run(function($ionicPlatform) {
@@ -45,23 +48,6 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
     // init local storage
     storage.init();     
     // init date-time lib
-    moment.lang('bg', {
-      relativeTime : {
-        future: "след %s",
-        past:   "преди %s",
-        s:  "секунди",
-        m:  "минута",
-        mm: "%d минути",
-        h:  "час",
-        hh: "%d часа",
-        d:  "денy",
-        dd: "%d дни",
-        M:  "месец",
-        MM: "%d месеца",
-        y:  "година",
-        yy: "%d години"
-      }
-    });
     moment.lang('bg');
   });
 })
@@ -103,7 +89,7 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       }
     })
     .state('tab.news-detail', {
-      url: '/news/:route/:id',
+      url: '/news/:id',
       views: {
         'tab-news': {
           templateUrl: 'templates/news-detail.html',
@@ -121,6 +107,15 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
         }
       }
     })
+    .state('tab.events-detail', {
+      url: '/events/:id',
+      views: {
+        'tab-events': {
+          templateUrl: 'templates/news-detail.html',
+          controller: 'EventsDetailCtrl'
+        }
+      }
+    })    
 
     .state('tab.decisions', {
       url: '/decisions',
