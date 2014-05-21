@@ -15,7 +15,7 @@ Please read [HISTORY](HISTORY) for a list of changes.
 
 # Requirements
 
-  * Requires Android 2.1 [API Level 7](http://developer.android.com/about/versions/android-2.1.html) or above
+  * Requires Android 2.2 [API Level 8](http://developer.android.com/about/versions/android-2.2.html) or above
   * Requires Internet connection
 
 # Development

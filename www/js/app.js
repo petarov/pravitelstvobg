@@ -25,12 +25,12 @@
 angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 
 .constant('NSOURCES', {
-  // NEWS: {name: 'news', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'},
-  // EVENTS: {name: 'events', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'},
-  // DECISIONS: {name: 'decisions', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'}
-  NEWS: {name: 'news', url: 'http://172.30.100.91:81/rss/news.xml'},
-  EVENTS: {name: 'events', url: 'http://172.30.100.91:81/rss/events.xml'},
-  DECISIONS: {name: 'decisions', url: 'http://172.30.100.91:81/rss/decisions.xml'}  
+  NEWS: {name: 'news', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'},
+  EVENTS: {name: 'events', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'},
+  DECISIONS: {name: 'decisions', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'}
+  // NEWS: {name: 'news', url: 'http://172.30.100.91:81/rss/news.xml'},
+  // EVENTS: {name: 'events', url: 'http://172.30.100.91:81/rss/events.xml'},
+  // DECISIONS: {name: 'decisions', url: 'http://172.30.100.91:81/rss/decisions.xml'}  
 })
 
 .run(function($ionicPlatform) {
