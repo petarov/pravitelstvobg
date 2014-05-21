@@ -37,14 +37,20 @@ gulp.task('watch', function() {
 });
 
 /**
- * Build release APK package
+ * Remove built APK
  */
-gulp.task('build', function() {
-  var deferred = Q.defer();
+gulp.task('clean', function() {
 
   try {
     fs.unlinkSync(Consts.RELEASE_NAME);
   } catch (e) {};
+
+});
+/**
+ * Build release APK package
+ */
+gulp.task('build', ['clean'], function() {
+  var deferred = Q.defer();
 
   var child = exec('cordova build --release android', function(err, stdout, stderr) {
     console.log(stdout);
