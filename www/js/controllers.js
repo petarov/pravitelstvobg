@@ -60,6 +60,11 @@ var showNewsItem = function($scope, $stateParams, News, route) {
   function(err) {
     $scope.item = {title: err};
   });
+
+  $scope.go2Uri = function(uri) {
+    // open news item in an InAppBrowser instance
+    var ref = window.open(uri, '_blank', 'location=no');    
+  };
 };
 
 angular.module('pbg.controllers', [])
@@ -73,7 +78,6 @@ angular.module('pbg.controllers', [])
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Новини';
   $scope.route = NSOURCES.NEWS.name;
-
   updateNews($scope, $ionicLoading, NSOURCES.NEWS, News);
 })
 .controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
@@ -83,7 +87,6 @@ angular.module('pbg.controllers', [])
 .controller('EventsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Събития';
   $scope.route = NSOURCES.EVENTS.name;
-
   updateNews($scope, $ionicLoading, NSOURCES.EVENTS, News);
 })
 .controller('EventsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
@@ -93,7 +96,6 @@ angular.module('pbg.controllers', [])
 .controller('DecisionsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Решения';
   $scope.route = NSOURCES.DECISIONS.name;
-
   updateNews($scope, $ionicLoading, NSOURCES.DECISIONS, News);
 })
 .controller('DecisionsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
