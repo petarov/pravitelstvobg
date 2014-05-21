@@ -184,6 +184,7 @@ angular.module('pbg.services', [])
           // escape title 2 times, since it &-s were already escaped
           // when the xml was being parsed
           item.title = unescapeHtml(unescapeHtml(item.title));
+          item.link = unescapeHtml(item.link);
         };
         
         result.lastUpdate = json.rss.channel.pubDate;
