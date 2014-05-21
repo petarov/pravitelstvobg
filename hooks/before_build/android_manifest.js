@@ -1,9 +1,7 @@
 #!/usr/bin/env node
-
-// this plugin replaces arbitrary text in arbitrary files
-//
-// Look for the string CONFIGURE HERE for areas that need configuration
-//
+/**
+ * Copy AndroidManifest.xml template into build folder
+ */
 
 var fs = require('fs')
   , path = require('path')
