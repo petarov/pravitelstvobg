@@ -1,5 +1,14 @@
 PravitelstvoBG HISTORY file
 
+v2.0
+Complete redesigned of the App and the UI.
+Fixed issue with scrolling.
+Fixed issue with displaying news titles.
+
+Цялостен редизайн на приложението и графичната му част.
+Оправен проблем със scroll-ване на новините.
+Оправен проблем с изписването на заглавията.
+
 v1.2
 Fixed issue with wrong last update date being shown.
 (Оправен проблем относно грешно изведена дата на последно обновление.)
