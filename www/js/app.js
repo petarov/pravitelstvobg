@@ -125,7 +125,16 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
           controller: 'DecisionsCtrl'
         }
       }
-    })    
+    })
+    .state('tab.decisions-detail', {
+      url: '/decisions/:id',
+      views: {
+        'tab-decisions': {
+          templateUrl: 'templates/news-detail.html',
+          controller: 'DecisionsDetailCtrl'
+        }
+      }
+    })        
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/news');
