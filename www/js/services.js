@@ -47,7 +47,7 @@ angular.module('pbg.services', [])
     all: function(source, forceUpdate) {
       var deferred = $q.defer()
         , url = ''
-        , storedData = storage.get(source.name)
+        , storedData = storage.get(source.storeName)
         , update = forceUpdate === true;
 
       // return cached data
@@ -74,10 +74,10 @@ angular.module('pbg.services', [])
           
           // remove prev data
           if (storedData) {
-            storage.remove(source.name);
+            storage.remove(source.storeName);
           }
           // save new data
-          storage.save(source.name, data);
+          storage.save(source.storeName, data);
 
           // resolve promise
           deferred.resolve(data);
@@ -95,10 +95,10 @@ angular.module('pbg.services', [])
       return deferred.promise;
     },
 
-    get: function(sourceName, id) {
+    get: function(storeName, id) {
       var deferred = $q.defer();
 
-      var storedData = storage.get(sourceName);
+      var storedData = storage.get(storeName);
       var item = (storedData && storedData.items) && storedData.items[id];
       if (item) {
         deferred.resolve(item);

@@ -52,9 +52,8 @@ var updateNews = function($scope, $ionicLoading, source, News) {
   $scope.updateNews(false);
 };
 
-var showNewsItem = function($scope, $stateParams, News, route) {
-  // console.log(route);
-  News.get(route, $stateParams.id).then(function(resp) {
+var showNewsItem = function($scope, $stateParams, News, storeName) {
+  News.get(storeName, $stateParams.id).then(function(resp) {
     $scope.item = resp;
   },
   function(err) {
@@ -81,7 +80,7 @@ angular.module('pbg.controllers', [])
   updateNews($scope, $ionicLoading, NSOURCES.NEWS, News);
 })
 .controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
-  showNewsItem($scope, $stateParams, News, NSOURCES.NEWS.name);
+  showNewsItem($scope, $stateParams, News, NSOURCES.NEWS.storeName);
 })
 
 .controller('EventsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
@@ -90,7 +89,7 @@ angular.module('pbg.controllers', [])
   updateNews($scope, $ionicLoading, NSOURCES.EVENTS, News);
 })
 .controller('EventsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
-  showNewsItem($scope, $stateParams, News, NSOURCES.EVENTS.name);
+  showNewsItem($scope, $stateParams, News, NSOURCES.EVENTS.storeName);
 })
 
 .controller('DecisionsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
@@ -99,7 +98,7 @@ angular.module('pbg.controllers', [])
   updateNews($scope, $ionicLoading, NSOURCES.DECISIONS, News);
 })
 .controller('DecisionsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
-  showNewsItem($scope, $stateParams, News, NSOURCES.DECISIONS.name);
+  showNewsItem($scope, $stateParams, News, NSOURCES.DECISIONS.storeName);
 })
 
 ; //eof

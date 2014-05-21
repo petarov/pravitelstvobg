@@ -25,9 +25,21 @@
 angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 
 .constant('NSOURCES', {
-  NEWS: {name: 'news', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'},
-  EVENTS: {name: 'events', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'},
-  DECISIONS: {name: 'decisions', url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'}
+  NEWS: {
+    name: 'news', 
+    storeName: 'news20',
+    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'
+  },
+  EVENTS: {
+    name: 'events', 
+    storeName: 'events20',
+    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'
+  },
+  DECISIONS: {
+    name: 'decisions', 
+    storeName: 'decisions20',
+    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'
+  }
 })
 
 .run(function($ionicPlatform) {
