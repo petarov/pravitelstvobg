@@ -43,6 +43,12 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 })
 
 .run(function($ionicPlatform) {
+  
+  // init local storage
+  storage.init();     
+  // init date-time lib
+  moment.lang('bg');
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -53,11 +59,6 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    // init local storage
-    storage.init();     
-    // init date-time lib
-    moment.lang('bg');
   });
 })
 

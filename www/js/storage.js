@@ -52,4 +52,4 @@
       this.storage.clear();
     }
   }
-}
+};
