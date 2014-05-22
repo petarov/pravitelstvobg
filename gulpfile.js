@@ -39,6 +39,26 @@ gulp.task('watch', function() {
 /**
  * Remove built APK
  */
+gulp.task('debug', function() {
+
+  var deferred = Q.defer();
+
+  var child = exec('cordova run --debug android', function(err, stdout, stderr) {
+    console.log(stdout);
+    if (err) {
+      console.error(stderr);
+      deferred.reject('[ERROR] Cordova build failed!');
+    } else {
+      deferred.resolve();
+    }
+  });
+
+  return deferred.promise;
+
+});
+/**
+ * Remove built APK
+ */
 gulp.task('clean', function() {
 
   try {
