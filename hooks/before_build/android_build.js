@@ -9,30 +9,44 @@ var fs = require('fs')
 
 
 function quit(msg) {
-    console.error('[ERROR] ', msg);
-    process.exit(-1);
+  console.error('[ERROR] ', msg);
+  process.exit(-1);
 };
 
-var manifestPath = path.join(rootdir, 'platforms/AndroidManifest.xml');
-if (!fs.existsSync(manifestPath)) {
-    quit(manifestPath + ' does not exist!');
-}
+var resources = [
+  {
+    src: 'platforms/AndroidManifest.xml',
+    dest: 'platforms/android/AndroidManifest.xml',
+  },
+  {
+    src: 'platforms/PravitelstvoBG.java',
+    dest: 'platforms/android/src/net/vexelon/pravitelstvobg/PravitelstvoBG.java'
+  }
+];
 
-var dest = path.join(rootdir, 'platforms/android');
-if (!fs.existsSync(dest)) {
-    quit(manifestPath + ' does not exist! Please add an Android platform.');
-}
+console.log('*** [HOOK] Copy platform build files ...');
 
-dest = path.join(dest, 'AndroidManifest.xml');
+resources.forEach(function(res) {
+  var srcPath = path.join(rootdir, res.src);
+  if (!fs.existsSync(srcPath)) {
+    quit(srcPath + ' does not exist!');
+  }
 
-// fs.createReadStream(manifestPath).pipe(fs.createWriteStream(dest));
+  var destPath = path.join(rootdir, res.dest);
+  // if (!fs.existsSync(destDir)) {
+    // quit(destDir + ' does not exist! Please add an Android platform.');
+  // }
+  // destPath = path.join(destDir, 'AndroidManifest.xml');
+  // 
+  // console.log('*********** copy ', srcPath, ' to ', destPath);
 
-var rd = fs.createReadStream(manifestPath);
-rd.on("error", function(err) {
+  var rd = fs.createReadStream(srcPath);
+  rd.on("error", function(err) {
     quit(err);
-});
-var wr = fs.createWriteStream(dest);
-wr.on("error", function(err) {
+  });
+  var wr = fs.createWriteStream(destPath);
+  wr.on("error", function(err) {
     quit(err);
+  });
+  rd.pipe(wr);
 });
-rd.pipe(wr);

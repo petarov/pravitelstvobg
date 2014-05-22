@@ -7,6 +7,8 @@ var fs = require('fs')
   , path = require('path')
   , rootdir = process.argv[2];
 
+console.log('*** [HOOK] Copy platform resources ...');
+
 var assetsPath = path.join(rootdir, 'assets/android');
 fs.readdirSync(assetsPath).forEach(function(dirName){
   

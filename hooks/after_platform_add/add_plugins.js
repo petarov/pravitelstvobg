@@ -16,7 +16,7 @@ var fs = require('fs')
 , sys = require('sys')
 , exec = require('child_process').exec;
 
-console.log('Adding plugins ...');
+console.log('*** [HOOK] Adding plugins ...');
  
 requiredPlugins.forEach(function(plugin) {
   exec("cordova plugin add " + plugin, function(err, stdout, stderr) {
