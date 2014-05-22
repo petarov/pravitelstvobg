@@ -58,7 +58,7 @@ angular.module('pbg.services', [])
       }
 
       // fetch data from http
-      RSS.all(source.url).then(function(data) {
+      RSS.all(source.url + new Date().getTime()).then(function(data) {
         if (data.items.length > 0) {
           
           // normalize data items props

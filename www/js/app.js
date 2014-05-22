@@ -28,17 +28,17 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
   NEWS: {
     name: 'news', 
     storeName: 'news20',
-    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl'
+    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?'
   },
   EVENTS: {
     name: 'events', 
     storeName: 'events20',
-    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003'
+    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003&'
   },
   DECISIONS: {
     name: 'decisions', 
     storeName: 'decisions20',
-    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004'
+    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004&'
   }
 })
 
