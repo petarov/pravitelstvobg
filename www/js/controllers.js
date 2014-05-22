@@ -69,9 +69,15 @@ var showNewsItem = function($scope, $stateParams, News, storeName) {
 angular.module('pbg.controllers', [])
 
 .controller('AboutCtrl', function($scope) {
-  cordova.getAppVersion(function (version) {
+  cordova && cordova.getAppVersion(function (version) {
     $scope.appVersion = version;
-  });  
+  });
+  $scope.uriLicense = 'http://opensource.org/licenses/MIT';
+  $scope.uriGbg = 'http://www.government.bg';
+  $scope.go2Uri = function(uri) {
+    // open news item in an InAppBrowser instance
+    var ref = window.open(uri, '_blank', 'location=no');    
+  };  
 })
 
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
