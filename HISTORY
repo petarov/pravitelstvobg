@@ -1,5 +1,12 @@
 PravitelstvoBG HISTORY file
 
+v2.1
+Fixed issue with news items caching.
+App no longer hides status bar.
+
+Оправен проблем с кеширане на новините.
+Приложението вече не скрива статус лентата.
+
 v2.0
 Complete redesigned of the App and the UI.
 Fixed issue with scrolling.
