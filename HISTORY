@@ -1,5 +1,10 @@
 PravitelstvoBG HISTORY file
 
+v2.2
+Fixed issue with downloading news on Android 4.0+ devices.
+
+Оправен проблем със зареждане на новините при Android 4.0+ устройства.
+
 v2.1
 Fixed issue with news items caching.
 App no longer hides status bar.

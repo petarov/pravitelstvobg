@@ -10,7 +10,8 @@ var gulp = require('gulp')
   , exec = require('child_process').exec
   , Q = require('q')
   , fs = require('fs')
-  , argv = require('yargs').argv;
+  , argv = require('yargs').argv
+  , localprops = require('./localprops.json');
 
 var Consts = {
   RELEASE_NAME: 'PravitelstvoBG.apk'
@@ -90,7 +91,7 @@ gulp.task('build', ['clean'], function() {
 gulp.task('sign', ['build'], function() {
   var deferred = Q.defer();
 
-  var ksPath = argv.ks;
+  var ksPath = localprops.ksPath || argv.ks;
   if (ksPath) {
     if (!fs.existsSync(ksPath)) {
       console.error('[ERROR] Keystore not found at ' + ksPath + '!');
@@ -101,8 +102,8 @@ gulp.task('sign', ['build'], function() {
     process.exit(-2);
   }
 
-  var ksPass = argv.ksPass;
-  if (!ksPath) {
+  var ksPass = localprops.ksPass || argv.ksPass;
+  if (!ksPass) {
     console.error('[ERROR] Keystore password not specified! use --ksPass <password>');
     process.exit(-3);
   }
@@ -123,7 +124,7 @@ gulp.task('sign', ['build'], function() {
     } else {
 
       //TODO: align
-      var zcmd = 'zipalign -v 4 platforms/android/ant-build/PravitelstvoBG-release-signed.apk ' + Consts.RELEASE_NAME;
+      var zcmd = localprops.sdk_path + '/zipalign -v 4 platforms/android/ant-build/PravitelstvoBG-release-signed.apk ' + Consts.RELEASE_NAME;
       var zchild = exec(zcmd, function(err, stdout, stderr) {
         console.log(stdout);
         if (err) {

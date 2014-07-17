@@ -1,9 +1,9 @@
-### generated
 *.keystore
 *.sw*
 platforms/^.*
 merges/^.*
 *.apk
 
-### nodejs
 node_modules/
+
+localprops.json
