@@ -36,4 +36,4 @@ To build and run the app use:
 
 # License
 
-Under [MIT License](LICENSE).
+[MIT License](LICENSE).
