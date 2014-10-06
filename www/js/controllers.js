@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-var updateNews = function($scope, $ionicLoading, source, News) {
-  $scope.updateNews = function(force) {
+var updateNews = function(force, $scope, $ionicLoading, source, News) {
+
     $ionicLoading.show({
       template: 'Зареждане...'
     });
@@ -31,7 +31,10 @@ var updateNews = function($scope, $ionicLoading, source, News) {
     News.all(source, force).then(function(resp) {
       $scope.news = resp.items;
       $scope.lastUpdate = resp.lastUpdate;
+
       $ionicLoading.hide();
+      $scope.$broadcast('scroll.refreshComplete');
+      
       // show badge only if we did a fresh update
       $scope.badge = {};
       $scope.badge.show = force || resp.fromCache !== true;
@@ -39,6 +42,7 @@ var updateNews = function($scope, $ionicLoading, source, News) {
     },
     function(err) {
       $ionicLoading.hide();
+      $scope.$broadcast('scroll.refreshComplete');
       // Notify user
       navigator.notification.alert(
         err, // message
@@ -47,9 +51,7 @@ var updateNews = function($scope, $ionicLoading, source, News) {
         'OK'    // buttonName
         );  
     });
-  };
 
-  $scope.updateNews(false);
 };
 
 var showNewsItem = function($scope, $stateParams, News, storeName) {
@@ -83,7 +85,11 @@ angular.module('pbg.controllers', [])
 .controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Новини';
   $scope.route = NSOURCES.NEWS.name;
-  updateNews($scope, $ionicLoading, NSOURCES.NEWS, News);
+  $scope.onRefresh = function(force) {
+    updateNews(force, $scope, $ionicLoading, NSOURCES.NEWS, News);
+  };
+
+  $scope.onRefresh(false);
 })
 .controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
   showNewsItem($scope, $stateParams, News, NSOURCES.NEWS.storeName);
@@ -92,7 +98,11 @@ angular.module('pbg.controllers', [])
 .controller('EventsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Събития';
   $scope.route = NSOURCES.EVENTS.name;
-  updateNews($scope, $ionicLoading, NSOURCES.EVENTS, News);
+  $scope.onRefresh = function(force) {
+    updateNews(force, $scope, $ionicLoading, NSOURCES.EVENTS, News);
+  };
+
+  $scope.onRefresh(false);
 })
 .controller('EventsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
   showNewsItem($scope, $stateParams, News, NSOURCES.EVENTS.storeName);
@@ -101,7 +111,11 @@ angular.module('pbg.controllers', [])
 .controller('DecisionsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
   $scope.tabTitle = 'Решения';
   $scope.route = NSOURCES.DECISIONS.name;
-  updateNews($scope, $ionicLoading, NSOURCES.DECISIONS, News);
+  $scope.onRefresh = function(force) {
+    updateNews(force, $scope, $ionicLoading, NSOURCES.DECISIONS, News);
+  };
+
+  $scope.onRefresh(false);
 })
 .controller('DecisionsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
   showNewsItem($scope, $stateParams, News, NSOURCES.DECISIONS.storeName);
