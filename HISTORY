@@ -1,5 +1,12 @@
 PravitelstvoBG HISTORY file
 
+v2.3
+Add 'Pull to refresh' functionality.
+Cordova security fixes.
+
+Добавена 'Издърпайте, за да обновите...' функционалност.
+Обновления касащеи сигурността на приложението.
+
 v2.2
 Fixed issue with downloading news on Android 4.0+ devices.
 
