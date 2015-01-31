@@ -22,6 +22,15 @@
  * THE SOFTWARE.
  */
 
+var isApp = function() {
+  /**
+   * Do not rely on this for any significant operations!
+   */
+  var isApp = document.URL.indexOf('http://') === -1 && 
+    document.URL.indexOf('https://') === -1;
+  return isApp;
+}
+
 var updateNews = function(force, $scope, $ionicLoading, source, News) {
 
     $ionicLoading.show({
@@ -44,12 +53,16 @@ var updateNews = function(force, $scope, $ionicLoading, source, News) {
       $ionicLoading.hide();
       $scope.$broadcast('scroll.refreshComplete');
       // Notify user
-      navigator.notification.alert(
-        err, // message
-        null,   // callback
-        'Грешка', // title
-        'OK'    // buttonName
-        );  
+      if (isApp()) {
+        navigator.notification.alert(
+          err, // message
+          null,   // callback
+          'Грешка', // title
+          'OK'    // buttonName
+          );
+      } else {
+        console.log(err);
+      }
     });
 
 };
@@ -68,7 +81,7 @@ var showNewsItem = function($scope, $stateParams, News, storeName) {
   };
 };
 
-angular.module('pbg.controllers', [])
+angular.module('pbg.controllers', ['pbg.consts'])
 
 .controller('AboutCtrl', function($scope) {
   cordova && cordova.getAppVersion(function (version) {

@@ -24,26 +24,6 @@
 
 angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 
-.constant('NSOURCES', {
-  NEWS: {
-    name: 'news', 
-    storeName: 'news20',
-    // url: 'http://localhost/news.rss?'
-    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?'
-  },
-  EVENTS: {
-    name: 'events', 
-    storeName: 'events20',
-    // url: 'http://localhost/events.rss?'
-    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0003&'
-  },
-  DECISIONS: {
-    name: 'decisions', 
-    storeName: 'decisions20',
-    url: 'http://www.government.bg/cgi-bin/e-cms/rss.pl?ch=0004&'
-  }
-})
-
 .run(function($ionicPlatform) {
   
   // init local storage

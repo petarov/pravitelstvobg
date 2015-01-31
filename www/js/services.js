@@ -34,7 +34,7 @@ var convertDate2Text = function(date) {
   return date;
 };
 
-angular.module('pbg.services', [])
+angular.module('pbg.services', ['pbg.consts'])
 
 /**
  * Fetch news items for given source
@@ -53,6 +53,7 @@ angular.module('pbg.services', [])
       // return cached data
       if (storedData && !update) {
         storedData.fromCache = true;
+        storedData.lastUpdate = convertDate2Text(storedData.lastUpdate);
         deferred.resolve(storedData);
         return deferred.promise;
       }
@@ -70,7 +71,7 @@ angular.module('pbg.services', [])
           };
 
           // date-time as text info
-          data.lastUpdate = convertDate2Text(data.lastUpdate);
+          //data.lastUpdate = convertDate2Text(data.lastUpdate);
           
           // remove prev data
           if (storedData) {
@@ -79,6 +80,7 @@ angular.module('pbg.services', [])
           // save new data
           storage.save(source.storeName, data);
 
+          data.lastUpdate = convertDate2Text(data.lastUpdate);
           // resolve promise
           deferred.resolve(data);
 
