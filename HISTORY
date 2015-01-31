@@ -1,5 +1,10 @@
 PravitelstvoBG HISTORY file
 
+v2.6
+Minor fixes and improvements.
+
+Оправен проблем с грешна дата на последно обновление.
+
 v2.5
 Add Cordova security fixes. (v3.6.3)
 
