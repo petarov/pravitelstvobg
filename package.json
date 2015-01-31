@@ -10,5 +10,12 @@
     "gulp-rename": "^1.2.0",
     "q": "^1.0.1",
     "yargs": "^1.2.2"
-  }
+  },
+  "cordovaPlugins": [
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.vibration",
+    "org.apache.cordova.inappbrowser",
+    "https://github.com/driftyco/ionic-plugins-keyboard.git",
+    "https://github.com/whiteoctober/cordova-plugin-app-version.git"  
+  ]
 }
