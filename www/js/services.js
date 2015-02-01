@@ -42,7 +42,7 @@ angular.module('pbg.services', ['pbg.consts'])
  * @param  {[type]} NSOURCES [description]
  * @return {[type]}          [description]
  */
-.factory('News', function($q, NSOURCES, RSS) {
+.factory('News', ['$q', 'NSOURCES', 'RSS', function($q, NSOURCES, RSS) {
   return {
     all: function(source, forceUpdate) {
       var deferred = $q.defer()
@@ -111,7 +111,7 @@ angular.module('pbg.services', ['pbg.consts'])
       return deferred.promise;
     }
   }
-})
+}])
 
 /**
  * Fetch RSS data for given url
@@ -119,7 +119,7 @@ angular.module('pbg.services', ['pbg.consts'])
  * @param  {[type]} $http [description]
  * @return {[type]}       [description]
  */
-.factory('RSS', function($q, $http) {
+.factory('RSS', ['$q', '$http', function($q, $http) {
 
   var e = document.createElement('div');
   function unescapeHtml(text) {
@@ -201,6 +201,6 @@ angular.module('pbg.services', ['pbg.consts'])
       return deferred.promise;
     }
   }
-})
+}])
 
 ; //eof

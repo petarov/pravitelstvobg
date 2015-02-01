@@ -24,7 +24,7 @@
 
 angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 
-.run(function($ionicPlatform) {
+.run(['$ionicPlatform', function($ionicPlatform) {
   
   // init local storage
   storage.init();     
@@ -42,9 +42,10 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       StatusBar.styleDefault();
     }
   });
-})
+}])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', 
+  function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $stateProvider
 
@@ -121,6 +122,8 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
       }
     })        
 
+  $ionicConfigProvider.backButton.text('').previousTitleText(false);
   $urlRouterProvider.otherwise('/tab/news');
-});
+
+}]);
 

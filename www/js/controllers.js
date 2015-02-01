@@ -91,7 +91,7 @@ var showNewsItem = function($scope, $stateParams, News, storeName) {
 
 angular.module('pbg.controllers', ['pbg.consts'])
 
-.controller('AboutCtrl', function($scope) {
+.controller('AboutCtrl', ['$scope', function($scope) {
   cordova && cordova.getAppVersion(function (version) {
     $scope.appVersion = version;
   });
@@ -101,9 +101,11 @@ angular.module('pbg.controllers', ['pbg.consts'])
     // open news item in an InAppBrowser instance
     var ref = window.open(uri, '_blank', 'location=no');    
   };  
-})
+}])
 
-.controller('NewsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
+.controller('NewsCtrl', ['$scope', '$ionicLoading', 'NSOURCES', 'News', 
+  function($scope, $ionicLoading, NSOURCES, News) {
+
   $scope.tabTitle = 'Новини';
   $scope.route = NSOURCES.NEWS.name;
   $scope.onRefresh = function(force) {
@@ -111,12 +113,17 @@ angular.module('pbg.controllers', ['pbg.consts'])
   };
 
   $scope.onRefresh(false);
-})
-.controller('NewsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
-  showNewsItem($scope, $stateParams, News, NSOURCES.NEWS.storeName);
-})
+}])
 
-.controller('EventsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
+.controller('NewsDetailCtrl', ['$scope', '$ionicLoading', 'NSOURCES', 'News', 
+  function($scope, $stateParams, NSOURCES, News) {
+
+  showNewsItem($scope, $stateParams, News, NSOURCES.NEWS.storeName);
+}])
+
+.controller('EventsCtrl', ['$scope', '$ionicLoading', 'NSOURCES', 'News', 
+  function($scope, $ionicLoading, NSOURCES, News) {
+
   $scope.tabTitle = 'Събития';
   $scope.route = NSOURCES.EVENTS.name;
   $scope.onRefresh = function(force) {
@@ -124,12 +131,17 @@ angular.module('pbg.controllers', ['pbg.consts'])
   };
 
   $scope.onRefresh(false);
-})
-.controller('EventsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
-  showNewsItem($scope, $stateParams, News, NSOURCES.EVENTS.storeName);
-})
+}])
 
-.controller('DecisionsCtrl', function($scope, $ionicLoading, NSOURCES, News) {
+.controller('EventsDetailCtrl', ['$scope', '$stateParams', 'NSOURCES', 'News', 
+  function($scope, $stateParams, NSOURCES, News) {
+
+  showNewsItem($scope, $stateParams, News, NSOURCES.EVENTS.storeName);
+}])
+
+.controller('DecisionsCtrl', ['$scope', '$ionicLoading', 'NSOURCES', 'News', 
+  function($scope, $ionicLoading, NSOURCES, News) {
+
   $scope.tabTitle = 'Решения';
   $scope.route = NSOURCES.DECISIONS.name;
   $scope.onRefresh = function(force) {
@@ -137,9 +149,12 @@ angular.module('pbg.controllers', ['pbg.consts'])
   };
 
   $scope.onRefresh(false);
-})
-.controller('DecisionsDetailCtrl', function($scope, $stateParams, NSOURCES, News) {
+}])
+
+.controller('DecisionsDetailCtrl', ['$scope', '$stateParams', 'NSOURCES', 'News', 
+  function($scope, $stateParams, NSOURCES, News) {
+
   showNewsItem($scope, $stateParams, News, NSOURCES.DECISIONS.storeName);
-})
+}])
 
 ; //eof
