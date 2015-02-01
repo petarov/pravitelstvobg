@@ -1,15 +1,11 @@
 <ion-view title="{{tabTitle}}">
 
-<!--   <ion-nav-buttons side="right">
-    <button class="button button-positive" ng-click="updateNews(true)">
-      <i class="icon ion-refresh"></i>Обнови
-    </button>
-  </ion-nav-buttons>
- -->
   <ion-content class="has-header">
 
     <ion-refresher
       pulling-text="Издърпайте, за да обновите..."
+      pulling-icon="ion-arrow-down-c"
+      refreshing-icon="ion-loading-c"
       on-refresh="onRefresh(true)">
     </ion-refresher>
 
@@ -28,5 +24,5 @@
       </ion-item>
     </ion-list>
   </ion-content>
- 
+
 </ion-view>

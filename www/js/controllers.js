@@ -74,10 +74,12 @@ var showNewsItem = function($scope, $stateParams, News, storeName) {
   function(err) {
     $scope.item = {title: err};
   });
-
   $scope.go2Uri = function(uri) {
     // open news item in an InAppBrowser instance
     var ref = window.open(uri, '_blank', 'location=no');    
+  };
+  $scope.shareIt = function(item) {
+
   };
 };
 
