@@ -1,6 +1,15 @@
 PravitelstvoBG HISTORY file
 
-v3.0
+v3.1
+Add share news item functionality.
+Update icons and layout.
+Fix issue with news item loading.
+
+Добавена функционалност за споделяне на новина.
+Малки обновления в иконите и визията на приложението.
+Оправен проблем с показване на новините.
+
+v3.0 (CANCELED)
 Add share news item functionality.
 Update icons and layout.
 Minor updates and fixes.
