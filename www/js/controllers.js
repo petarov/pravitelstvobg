@@ -33,15 +33,14 @@ var isApp = function() {
 
 var updateNews = function(force, $scope, $ionicLoading, source, News) {
 
-    $ionicLoading.show({
-      template: 'Зареждане...'
-    });
-
+    // $ionicLoading.show({
+    //   template: 'Зареждане...'
+    // });
     News.all(source, force).then(function(resp) {
       $scope.news = resp.items;
       $scope.lastUpdate = resp.lastUpdate;
 
-      $ionicLoading.hide();
+      // $ionicLoading.hide();
       $scope.$broadcast('scroll.refreshComplete');
       
       // show badge only if we did a fresh update
@@ -50,7 +49,7 @@ var updateNews = function(force, $scope, $ionicLoading, source, News) {
       $scope.badge.count = resp.items.length;
     },
     function(err) {
-      $ionicLoading.hide();
+      // $ionicLoading.hide();
       $scope.$broadcast('scroll.refreshComplete');
       // Notify user
       if (isApp()) {
