@@ -79,7 +79,13 @@ var showNewsItem = function($scope, $stateParams, News, storeName) {
     var ref = window.open(uri, '_blank', 'location=no');    
   };
   $scope.shareIt = function(item) {
-
+    if (isApp()) {
+      window.plugins.socialsharing.share(
+        item.title || '', 
+        'Споделено от приложението PravitelstvoBG',
+        null,
+        item.link || '');
+    }
   };
 };
 
