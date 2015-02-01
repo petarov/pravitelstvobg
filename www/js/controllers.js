@@ -114,7 +114,7 @@ angular.module('pbg.controllers', ['pbg.consts'])
   $scope.onRefresh(false);
 }])
 
-.controller('NewsDetailCtrl', ['$scope', '$ionicLoading', 'NSOURCES', 'News', 
+.controller('NewsDetailCtrl', ['$scope', '$stateParams', 'NSOURCES', 'News', 
   function($scope, $stateParams, NSOURCES, News) {
 
   showNewsItem($scope, $stateParams, News, NSOURCES.NEWS.storeName);
