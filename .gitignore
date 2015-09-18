@@ -1,8 +1,11 @@
-*.keystore
-*.sw*
-platforms/^.*
-merges/^.*
-*.apk
+platforms/
+plugins/
+merges/
 node_modules/
 localprops.json
 *.sh
+*.apk
+*.keystore
+*.sw*
+resources/android
+resources/ios

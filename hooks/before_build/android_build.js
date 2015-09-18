@@ -15,11 +15,7 @@ function quit(msg) {
 
 var resources = [
   {
-    src: 'platforms/AndroidManifest.xml',
-    dest: 'platforms/android/AndroidManifest.xml',
-  },
-  {
-    src: 'platforms/PravitelstvoBG.java',
+    src: 'assets/android/PravitelstvoBG.java',
     dest: 'platforms/android/src/net/vexelon/pravitelstvobg/PravitelstvoBG.java'
   }
 ];
