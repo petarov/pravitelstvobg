@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+'uses strict';
+
 var convertDate2Text = function(date) {
   // date-time as text info
   var dt = moment(Date.parse(date));
@@ -68,7 +70,7 @@ angular.module('pbg.services', ['pbg.consts'])
             data.items[i].textDate = convertDate2Text(data.items[i].pubDate);
             data.items[i].pubDate = moment(Date.parse(data.items[i].pubDate))
               .format("DD-MM-YYYY HH:mm");
-          };
+          }
 
           // date-time as text info
           //data.lastUpdate = convertDate2Text(data.lastUpdate);
@@ -110,7 +112,7 @@ angular.module('pbg.services', ['pbg.consts'])
 
       return deferred.promise;
     }
-  }
+  };
 }])
 
 /**
@@ -125,7 +127,7 @@ angular.module('pbg.services', ['pbg.consts'])
   function unescapeHtml(text) {
     e.innerHTML = text;
     return e.childNodes.length === 0 ? text : e.childNodes[0].nodeValue;    
-  };
+  }
 
   function parseXml(xml) {
      var dom = null;
@@ -153,7 +155,7 @@ angular.module('pbg.services', ['pbg.consts'])
 
      }
      return dom;
-  };
+  }
 
   return {
     all: function(url) {
@@ -187,7 +189,7 @@ angular.module('pbg.services', ['pbg.consts'])
           // when the xml was being parsed
           item.title = unescapeHtml(unescapeHtml(item.title));
           item.link = unescapeHtml(item.link);
-        };
+        }
         
         result.lastUpdate = json.rss.channel.pubDate;
 
@@ -200,7 +202,7 @@ angular.module('pbg.services', ['pbg.consts'])
 
       return deferred.promise;
     }
-  }
+  };
 }])
 
 ; //eof

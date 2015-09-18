@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+'uses strict';
+
 angular.module('pbg.consts', [])
 
 .constant('NSOURCES', {

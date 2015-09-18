@@ -22,7 +22,9 @@
  * THE SOFTWARE.
  */
 
- var storage = {
+'uses strict';
+
+var storage = {
 
   init: function() {
     this.storage = window.localStorage;

@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+'uses strict';
+
 var isApp = function() {
   /**
    * Do not rely on this for any significant operations!
@@ -29,7 +31,7 @@ var isApp = function() {
   var isApp = document.URL.indexOf('http://') === -1 && 
     document.URL.indexOf('https://') === -1;
   return isApp;
-}
+};
 
 var updateNews = function(force, $scope, $ionicLoading, source, News) {
 

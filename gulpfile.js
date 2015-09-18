@@ -11,6 +11,7 @@ var gulp = require('gulp')
   , Q = require('q')
   , fs = require('fs')
   , argv = require('yargs').argv
+  , jshint = require('gulp-jshint')
   , localprops = require('./localprops.json');
 
 var Consts = {
@@ -142,6 +143,11 @@ gulp.task('sign', ['build'], function() {
   return deferred.promise;  
 });
 
+gulp.task('lint', function() {
+  return gulp.src('./www/js/**/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
 
 /**
  * Default

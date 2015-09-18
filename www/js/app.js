@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+'uses strict';
+
 angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
 
 .run(['$ionicPlatform', function($ionicPlatform) {
@@ -48,82 +50,75 @@ angular.module('pbg', ['ionic', 'pbg.controllers', 'pbg.services'])
   function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   $stateProvider
-
-    .state('tab', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-
-    .state('tab.about', {
-      url: '/about',
-      views: {
-        'tab-about': {
-          templateUrl: 'templates/tab-about.html',
-          controller: 'AboutCtrl'
-        }
+  .state('tab', {
+    url: "/tab",
+    abstract: true,
+    templateUrl: "templates/tabs.html"
+  })
+  .state('tab.about', {
+    url: '/about',
+    views: {
+      'tab-about': {
+        templateUrl: 'templates/tab-about.html',
+        controller: 'AboutCtrl'
       }
-    })
-
-    .state('tab.news', {
-      url: '/news',
-      views: {
-        'tab-news': {
-          templateUrl: 'templates/tab-news.html',
-          controller: 'NewsCtrl'
-        }
+    }
+  })
+  .state('tab.news', {
+    url: '/news',
+    views: {
+      'tab-news': {
+        templateUrl: 'templates/tab-news.html',
+        controller: 'NewsCtrl'
       }
-    })
-    .state('tab.news-detail', {
-      url: '/news/:id',
-      views: {
-        'tab-news': {
-          templateUrl: 'templates/news-detail.html',
-          controller: 'NewsDetailCtrl'
-        }
+    }
+  })
+  .state('tab.news-detail', {
+    url: '/news/:id',
+    views: {
+      'tab-news': {
+        templateUrl: 'templates/news-detail.html',
+        controller: 'NewsDetailCtrl'
       }
-    })
-
-    .state('tab.events', {
-      url: '/events',
-      views: {
-        'tab-events': {
-          templateUrl: 'templates/tab-news.html',
-          controller: 'EventsCtrl'
-        }
+    }
+  })
+  .state('tab.events', {
+    url: '/events',
+    views: {
+      'tab-events': {
+        templateUrl: 'templates/tab-news.html',
+        controller: 'EventsCtrl'
       }
-    })
-    .state('tab.events-detail', {
-      url: '/events/:id',
-      views: {
-        'tab-events': {
-          templateUrl: 'templates/news-detail.html',
-          controller: 'EventsDetailCtrl'
-        }
+    }
+  })
+  .state('tab.events-detail', {
+    url: '/events/:id',
+    views: {
+      'tab-events': {
+        templateUrl: 'templates/news-detail.html',
+        controller: 'EventsDetailCtrl'
       }
-    })    
-
-    .state('tab.decisions', {
-      url: '/decisions',
-      views: {
-        'tab-decisions': {
-          templateUrl: 'templates/tab-news.html',
-          controller: 'DecisionsCtrl'
-        }
+    }
+  })    
+  .state('tab.decisions', {
+    url: '/decisions',
+    views: {
+      'tab-decisions': {
+        templateUrl: 'templates/tab-news.html',
+        controller: 'DecisionsCtrl'
       }
-    })
-    .state('tab.decisions-detail', {
-      url: '/decisions/:id',
-      views: {
-        'tab-decisions': {
-          templateUrl: 'templates/news-detail.html',
-          controller: 'DecisionsDetailCtrl'
-        }
+    }
+  })
+  .state('tab.decisions-detail', {
+    url: '/decisions/:id',
+    views: {
+      'tab-decisions': {
+        templateUrl: 'templates/news-detail.html',
+        controller: 'DecisionsDetailCtrl'
       }
-    })        
-
+    }
+  });
   $ionicConfigProvider.backButton.text('').previousTitleText(false);
   $urlRouterProvider.otherwise('/tab/news');
-
 }]);
 
