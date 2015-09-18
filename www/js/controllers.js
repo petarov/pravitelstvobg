@@ -91,9 +91,12 @@ var showNewsItem = function($scope, $stateParams, News, storeName) {
 angular.module('pbg.controllers', ['pbg.consts'])
 
 .controller('AboutCtrl', ['$scope', function($scope) {
-  cordova && cordova.getAppVersion(function (version) {
-    $scope.appVersion = version;
-  });
+  $scope.appVersion = '';
+  if (cordova) {
+    cordova.getAppVersion(function (version) {
+      $scope.appVersion = version;
+    });
+  }
   $scope.uriLicense = 'http://opensource.org/licenses/MIT';
   $scope.uriGbg = 'http://www.government.bg';
   $scope.go2Uri = function(uri) {
