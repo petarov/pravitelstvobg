@@ -18,7 +18,7 @@
   <preference name="exit-on-suspend" value="false"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="none"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="0"/>
   <preference name="android-minSdkVersion" value="14"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>

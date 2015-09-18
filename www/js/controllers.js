@@ -101,6 +101,7 @@ angular.module('pbg.controllers', ['pbg.consts'])
   }
   $scope.uriLicense = 'http://opensource.org/licenses/MIT';
   $scope.uriGbg = 'http://www.government.bg';
+  $scope.uriGH = 'https://github.com/petarov/pravitelstvobg';
   $scope.go2Uri = function(uri) {
     // open news item in an InAppBrowser instance
     var ref = window.open(uri, '_blank', 'location=no');    

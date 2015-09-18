@@ -12,10 +12,11 @@ var gulp = require('gulp')
   , fs = require('fs')
   , argv = require('yargs').argv
   , jshint = require('gulp-jshint')
-  , localprops = require('./localprops.json');
+  , localprops = require('./localprops.json')
+  , pkg = require('./package.json');
 
 var Consts = {
-  RELEASE_NAME: 'PravitelstvoBG.apk'
+  RELEASE_NAME: 'PravitelstvoBG-' + pkg.version + '.apk'
 };
 
 var paths = {

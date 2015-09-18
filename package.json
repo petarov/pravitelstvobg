@@ -1,6 +1,6 @@
 {
   "name": "PravitelstvoBG",
-  "version": "1.0.0",
+  "version": "3.2",
   "description": "PravitelstvoBG is a simple RSS reader mobile app that fetches news and info from government.bg",
   "dependencies": {
     "bower": "^1.5.2",
@@ -17,7 +17,6 @@
   },
   "cordovaPlugins": [
     "cordova-plugin-dialogs",
-    "cordova-plugin-vibration",
     "cordova-plugin-inappbrowser",
     "cordova-plugin-ionic-keyboard",
     "cordova-plugin-app-version",
