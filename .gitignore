@@ -3,8 +3,6 @@
 platforms/^.*
 merges/^.*
 *.apk
-
 node_modules/
-
 localprops.json
 *.sh
