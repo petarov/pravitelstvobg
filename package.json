@@ -12,11 +12,14 @@
     "yargs": "^1.2.2"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.dialogs",
-    "org.apache.cordova.vibration",
-    "org.apache.cordova.inappbrowser",
-    "https://github.com/driftyco/ionic-plugins-keyboard.git",
-    "https://github.com/whiteoctober/cordova-plugin-app-version.git",
-    "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git"
+    "cordova-plugin-dialogs",
+    "cordova-plugin-vibration",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-ionic-keyboard",
+    "cordova-plugin-app-version",
+    "cordova-plugin-socialsharing"
+  ],
+  "cordovaPlatforms": [
+    "android"
   ]
 }
