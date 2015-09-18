@@ -4,7 +4,7 @@
 
 var gulp = require('gulp')
   , concat = require('gulp-concat')
-  , sass = require('gulp-sass')
+  //, sass = require('gulp-sass')
   , minifyCss = require('gulp-minify-css')
   , rename = require('gulp-rename')
   , exec = require('child_process').exec
@@ -108,11 +108,12 @@ gulp.task('sign', ['build'], function() {
     process.exit(-3);
   }
 
+  var apkPath = 'platforms/android/build/outputs/apk';
   var cmdline = 'jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 '
     + ' -keystore ' + ksPath 
     + ' -storepass ' + ksPass
-    + ' -signedjar platforms/android/ant-build/PravitelstvoBG-release-signed.apk'
-    + ' platforms/android/ant-build/PravitelstvoBG-release-unsigned.apk pravitelstvobg';
+    + ' -signedjar ' + apkPath + '/android-release-signed.apk'
+    + ' ' + apkPath + '/android-release-unsigned.apk pravitelstvobg';
 
   console.log(cmdline);
 
@@ -124,7 +125,7 @@ gulp.task('sign', ['build'], function() {
     } else {
 
       //TODO: align
-      var zcmd = localprops.sdk_path + '/zipalign -v 4 platforms/android/ant-build/PravitelstvoBG-release-signed.apk ' + Consts.RELEASE_NAME;
+      var zcmd = localprops.sdk_path + '/zipalign -v 4 ' + apkPath + '/android-release-signed.apk ' + Consts.RELEASE_NAME;
       var zchild = exec(zcmd, function(err, stdout, stderr) {
         console.log(stdout);
         if (err) {
