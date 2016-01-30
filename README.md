@@ -1,10 +1,7 @@
 _.o0 PravitelstvoBG 0o._
 =========================
 
-<a href="https://play.google.com/store/apps/details?id=net.vexelon.pravitelstvobg">
-  <img alt="Get it on Google Play"
-       src="https://developer.android.com/images/brand/bg_generic_rgb_wo_45.png" />
-</a>
+<a href="https://play.google.com/store/apps/details?id=net.vexelon.pravitelstvobg&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-AC-global-none-all-co-pr-py-PartBadges-Oct1515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge.png" width="180px"/></a>
 
 [PravitelstvoBG](https://play.google.com/store/apps/details?id=net.vexelon.pravitelstvobg) is a 
 simple RSS reader mobile app that fetches news and info from [government.bg](http://government.bg)
